@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+
+    <title>View</title>
+
+    <!-- Stylesheets -->
+
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/common.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/view.css') }}">
+  </head>
+
+
+  <body style="background:#2C2D3A">
+    <div class="grid-container">
+      <div id="grid-column-languages-selection">
+        <div id="eng-button" class="cell selected_color_cell"
+          onclick="LanguagesButtonsFunction(ENGLISH)">
+          anglais
+        </div>
+
+        <div id="fr-button" class="cell basic_color_cell"
+          onclick="LanguagesButtonsFunction(FRENCH)">
+          francais
+        </div>
+
+        <div id="esp-button" class="cell basic_color_cell"
+          onclick="LanguagesButtonsFunction(SPANISH)">
+          espagnol
+        </div>
+
+        <div id="ara-button" class="cell basic_color_cell"
+          onclick="LanguagesButtonsFunction(ARABIAN)">
+          arabe
+        </div>
+
+        <div id="settings-button" class="cell basic_color_cell"
+          onclick="LanguagesButtonsFunction('settings')">
+        </div>
+      </div>
+      <div id="grid-column-display">
+        <div id="displayPanel" class="cell basic_color_cell view-display">
+        </div>
+
+        <div id="grid-column-display-selection">
+          <div id="word_cloud-button" class="cell selected_color_cell"
+            onclick="DisplaysButtonsFunction(WORD_CLOUD)">
+            word cloud
+          </div>
+
+          <div id="sentences-button" class="cell basic_color_cell"
+            onclick="DisplaysButtonsFunction(SENTENCES)">
+            sentences
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <footer>
+    <!-- Scripts (ordre important) -->
+  	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <script type="text/javascript" src="{{ url_for('static',filename='js/init.js') }}"></script>
+
+
+    <script type="text/javascript" src="{{ url_for('static',filename='js/display_generators.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/display_updator/display_updator_values.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/display_updator/display_updator_custommer.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/display_updator/display_updator_common.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/tools/display_tools.js') }}"></script>
+
+
+
+    <script type="text/javascript" src="{{ url_for('static',filename='js/button-manager.js') }}"></script>
+
+    <script type="text/javascript">
+      Updator();
+    </script>
+  </footer>
+</html>
