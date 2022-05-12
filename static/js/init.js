@@ -1,8 +1,8 @@
 
-const ENGLISH = "en-US";
-const FRENCH = "fr-FR";
-const SPANISH = "es-ES";
-const ARABIAN = "ar-DZ";
+const ENGLISH = "eng";
+const FRENCH = "fr";
+const SPANISH = "esp";
+const ARABIAN = "ara";
 // https://cloud.google.com/speech-to-text/docs/languages
 
 // Images extentions

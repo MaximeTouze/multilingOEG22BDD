@@ -8,8 +8,6 @@ import os as os
 
 
 import my_python.word_cloud_generation.word_cloud_generation as word_cloud_generation
-import my_python.transcription.transcription as transcription
-import my_python.translation.translation as translation
 import my_python.api.conf_manager as ConfManager
 import my_python.manager.cache_data_manager as CacheDataManager
 import my_python.api.likeSystem as likeSystem
