@@ -19,6 +19,20 @@ app.debug = True
 
 #app.run(ssl_context="adhoc")
 
+## Welcome page ::
+
+@app.route('/')
+def root():
+    return render_template('index.html')
+
+
+## Welcome page ::
+
+@app.route('/tutorial')
+def tutorial():
+    return render_template('tutorial.html')
+
+
 ## The app's html view ::
 
 @app.route('/view')
