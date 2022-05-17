@@ -121,14 +121,14 @@ def updateWordCloud():
     #print(cloud_data)
     #name = request.form['name']
 
-    mem = request.data
-    print(request.data, request.form, request.args)
+    mem = request.form
+
     # Bytes to string
-    mem = ''.join(map(chr, mem))
+    #mem = ''.join(map(chr, mem))
     # String to json
-    mem = '"'.join(mem.split("'"))
+    #mem = '"'.join(mem.split("'"))
     # Json to dictionnary
-    values = json.loads(mem)
+    #values = json.loads(mem)
 
     for k,v in values.items():
         decoded = base64.b64decode(v)
