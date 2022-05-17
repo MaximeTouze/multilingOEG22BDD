@@ -164,10 +164,10 @@ def updateWordCloud():
 def SentenceInsertion():
     values = request.data.json()
     # Bytes to string
-    #mem = values.decode('utf8')
-    #mem = ''.join(map(chr, mem))
+    values = values.decode('utf8')
+    #values = ''.join(map(chr, mem))
     # String to json
-    #mem = '"'.join(mem.split("'"))
+    #values = '"'.join(mem.split("'"))
     # Json to dictionnary
     values = json.loads(values)
     print (values)
