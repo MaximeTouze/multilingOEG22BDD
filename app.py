@@ -122,7 +122,7 @@ def updateWordCloud():
     #name = request.form['name']
 
     mem = request.data
-
+    print(request.data)
     # Bytes to string
     mem = ''.join(map(chr, mem))
     # String to json
