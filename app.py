@@ -127,7 +127,7 @@ def updateWordCloud():
 def SentenceInsertion():
     values = request.args
     print(request.form)
-    id_conf = int(values['id_conf'])
+    conf_id = int(values['id_conf'])
     conf_name = values['conf_name']
     conf_room = values['conf_room']
     conf_lang = values['conf_lang']
