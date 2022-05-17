@@ -128,13 +128,13 @@ def SentenceInsertion():
     values = request.args
     print(request.form)
     id_conf = int(values['id_conf'])
-    title_conf = values['title_conf']
-    room = values['room']
+    conf_name = values['conf_name']
+    conf_room = values['conf_room']
     conf_lang = values['conf_lang']
-    eng_sentence = values['sentences'][LangConst.ENGLISH]
-    fr_sentence = values['sentences'][LangConst.FRENCH]
-    esp_sentence = values['sentences'][LangConst.SPANISH]
-    ara_sentence = values['sentences'][LangConst.ARAB]
+    eng_sentence = values['sentences'][LangConst.TRAD_ENGLISH]
+    fr_sentence = values['sentences'][LangConst.TRAD_FRENCH]
+    esp_sentence = values['sentences'][LangConst.TRAD_SPANISH]
+    ara_sentence = values['sentences'][LangConst.TRAD_ARAB]
     return jsonify({'status_code': '200'})
 
 
