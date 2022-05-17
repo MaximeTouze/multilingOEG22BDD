@@ -132,7 +132,7 @@ def updateWordCloud():
 
     for k,v in values.items():
         decoded = base64.b64decode(v)
-        image_result = open(f'/var/www/html/multilingOEG/static/exposed/image_{k}.png', 'wb')
+        image_result = open(f'/var/www/html/multilingOEG22/static/exposed/image_{k}.png', 'wb')
         image_result.write(decoded)
 
     #if os.path.exists(name):
