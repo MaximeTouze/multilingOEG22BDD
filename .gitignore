@@ -7,3 +7,4 @@ mykey.txt
 *.wav
 */credentials/*.json
 *.wsgi
+*.log
