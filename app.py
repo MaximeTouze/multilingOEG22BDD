@@ -125,8 +125,15 @@ def updateWordCloud():
 
 @app.route("/insertion", methods=['PUT'])
 def SentenceInsertion():
-    values = request.args
-    print(request.form)
+    values = request.data
+    # Bytes to string
+    mem = ''.join(map(chr, values))
+    # String to json
+    mem = '"'.join(mem.split("'"))
+    # Json to dictionnary
+    values = json.loads(mem)
+
+    print(request.form, request.args, request.data, request, values)
     conf_id = int(values['conf_id'])
     conf_name = values['conf_name']
     conf_room = values['conf_room']
