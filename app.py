@@ -6,11 +6,14 @@ import js2py
 import re
 import os as os
 
+import base64
+
 
 import my_python.word_cloud_generation.word_cloud_generation as word_cloud_generation
 import my_python.api.conf_manager as ConfManager
 import my_python.manager.cache_data_manager as CacheDataManager
 import my_python.api.likeSystem as likeSystem
+import my_python.const.lang_const as LangConst
 
 
 app = Flask(__name__, template_folder='templates')
@@ -85,25 +88,55 @@ def Mostly_liked_sentences_api():
 
 @app.route("/startConf", methods=['POST'])
 def startConf():
-    print (request)
-    print(request.args)
-    print (request.form)
     room = int(request.form.get('room'))
     lang = request.form.get('lang')
     ConfManager.startConf(room, lang)
-    return render_template('RecorderFrontTesting.html')
+    return render_template('index.html')
 
 @app.route("/stopConf", methods=['POST'])
 def stopConf():
     room = int(request.form.get('room'))
     ConfManager.setConf_questions_state(room)
-    return render_template('RecorderFrontTesting.html')
+    return render_template('index.html')
 
 @app.route("/endConf", methods=['POST'])
 def endConf():
     room = int(request.form.get('room'))
     ConfManager.endConf(room)
-    return render_template('RecorderFrontTesting.html')
+    return render_template('index.html')
+
+@app.route("/updateWordCloud", methods=['POST'])
+def updateWordCloud():
+    request.get_json()
+    print(request.get_json(force=True))
+    cloud = request.get_json(force=True)['WC']
+    name = request.form['name']
+    print(cloud)
+    cloud_data = base64.b64decode(cloud)
+    print(cloud_data)
+
+    if os.path.exists(name):
+        os.remove(name)
+
+    with open(name, "wb") as file:
+        file.write(cloud_data)
+
+    return render_template('index.html')
+
+@app.route("/insertion", methods=['PUT'])
+def SentenceInsertion():
+    values = request.args
+    print(request.form)
+    id_conf = int(values['id_conf'])
+    title_conf = values['title_conf']
+    room = values['room']
+    conf_lang = values['conf_lang']
+    eng_sentence = values['sentences'][LangConst.ENGLISH]
+    fr_sentence = values['sentences'][LangConst.FRENCH]
+    esp_sentence = values['sentences'][LangConst.SPANISH]
+    ara_sentence = values['sentences'][LangConst.ARAB]
+    return jsonify({'status_code': '200'})
+
 
 
 if __name__== '__main__':
