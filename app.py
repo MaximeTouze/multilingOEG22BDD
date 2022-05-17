@@ -132,7 +132,8 @@ def updateWordCloud():
 
     for k,v in values.items():
         decoded = base64.b64decode(v)
-        image_result = open(f'/var/www/html/multilingOEG22/static/exposed/image_{k}.png', 'wb')
+        lang = LangConst.REVERSE_MATCHER[k]
+        image_result = open(f'/var/www/html/multilingOEG22/static/exposed/WordCloud_{lang}.png', 'wb')
         image_result.write(decoded)
 
     #if os.path.exists(name):
@@ -142,13 +143,13 @@ def updateWordCloud():
     #nparr = np.fromstring(request.data, np.uint8)
     #print('ou là')
     # decode image
-    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    #img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
     # do some fancy processing here....
-    print(img)
-    print(type(img))
+    #print(img)
+    #print(type(img))
     # encode response using jsonpickle
-    response_pickled = jsonpickle.encode(response)
+    #response_pickled = jsonpickle.encode(response)
 
 
     return render_template('index.html')
@@ -161,14 +162,15 @@ def updateWordCloud():
 
 @app.route("/insertion", methods=['PUT'])
 def SentenceInsertion():
-    values = request.data
+    values = request.data.json()
     # Bytes to string
-    mem = values.decode('utf8')
+    #mem = values.decode('utf8')
     #mem = ''.join(map(chr, mem))
     # String to json
     #mem = '"'.join(mem.split("'"))
     # Json to dictionnary
-    values = json.loads(mem)
+    values = json.loads(values)
+    print (values)
 
     conf_id = int(values['conf_id'])
     conf_name = values['conf_name']
