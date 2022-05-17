@@ -15,9 +15,9 @@ import my_python.manager.cache_data_manager as CacheDataManager
 import my_python.api.likeSystem as likeSystem
 import my_python.const.lang_const as LangConst
 
-import jsonpickle
-import numpy as np
-import cv2
+#import jsonpickle
+#import numpy as np
+#import cv2
 
 app = Flask(__name__, template_folder='templates')
 app.debug = True
@@ -155,7 +155,7 @@ def SentenceInsertion():
     values = request.data
     # Bytes to string
     mem = values.decode('utf8')
-    mem = ''.join(map(chr, mem))
+    #mem = ''.join(map(chr, mem))
     # String to json
     #mem = '"'.join(mem.split("'"))
     # Json to dictionnary
