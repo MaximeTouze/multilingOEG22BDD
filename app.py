@@ -162,7 +162,7 @@ def updateWordCloud():
 
 @app.route("/insertion", methods=['PUT'])
 def SentenceInsertion():
-    values = request.data.json()
+    values = request.data
     # Bytes to string
     values = values.decode('utf8')
     #values = ''.join(map(chr, mem))
