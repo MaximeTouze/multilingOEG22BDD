@@ -15,6 +15,9 @@ import my_python.manager.cache_data_manager as CacheDataManager
 import my_python.api.likeSystem as likeSystem
 import my_python.const.lang_const as LangConst
 
+import jsonpickle
+import numpy as np
+import cv2
 
 app = Flask(__name__, template_folder='templates')
 app.debug = True
@@ -105,35 +108,59 @@ def endConf():
     ConfManager.endConf(room)
     return render_template('index.html')
 
+
+
 @app.route("/updateWordCloud", methods=['POST'])
 def updateWordCloud():
-    request.get_json()
-    print(request.get_json(force=True))
-    cloud = request.get_json(force=True)['WC']
-    name = request.form['name']
-    print(cloud)
-    cloud_data = base64.b64decode(cloud)
-    print(cloud_data)
+    #request.get_json()
+    #print(request.get_json(force=True))
+    #cloud = request.get_json(force=True)['WC']
+    #
+    #print(cloud)
+    #cloud_data = base64.b64decode(cloud)
+    #print(cloud_data)
+    #name = request.form['name']
 
-    if os.path.exists(name):
-        os.remove(name)
+    for k,v in response.items():
+        decoded = base64.b64decode(v)
+        image_result = open(f'image_{k}.png', 'wb')
+        image_result.write(decoded)
 
-    with open(name, "wb") as file:
-        file.write(cloud_data)
+    #if os.path.exists(name):
+    #    os.remove(name)
+    #print('plante ici')
+    # convert string of image data to uint8
+    #nparr = np.fromstring(request.data, np.uint8)
+    #print('ou là')
+    # decode image
+    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+
+    # do some fancy processing here....
+    print(img)
+    print(type(img))
+    # encode response using jsonpickle
+    response_pickled = jsonpickle.encode(response)
+
 
     return render_template('index.html')
+
+
+
+
+
+
 
 @app.route("/insertion", methods=['PUT'])
 def SentenceInsertion():
     values = request.data
     # Bytes to string
-    mem = ''.join(map(chr, values))
+    mem = values.decode('utf8')
+    mem = ''.join(map(chr, mem))
     # String to json
-    mem = '"'.join(mem.split("'"))
+    #mem = '"'.join(mem.split("'"))
     # Json to dictionnary
     values = json.loads(mem)
 
-    print(request.form, request.args, request.data, request, values)
     conf_id = int(values['conf_id'])
     conf_name = values['conf_name']
     conf_room = values['conf_room']
