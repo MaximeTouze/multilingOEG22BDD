@@ -121,7 +121,7 @@ def updateWordCloud():
     #print(cloud_data)
     #name = request.form['name']
 
-    for k,v in response.items():
+    for k,v in request.data.items():
         decoded = base64.b64decode(v)
         image_result = open(f'image_{k}.png', 'wb')
         image_result.write(decoded)
