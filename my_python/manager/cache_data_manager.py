@@ -73,7 +73,7 @@ def getDisplayed_sentences_room_language(room, language):
 def getDisplayed_sentences_room_language_from(room, language, from_sent):
     sent_rank = sentences_rank[room]
     displayed_sentences_scaled = displayed_sentences[room][language]
-    print(sent_rank, from_sent)
+    
     # In case of new conf
     if (sent_rank < from_sent) :
         # New conf = reset on view too

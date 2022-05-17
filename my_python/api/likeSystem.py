@@ -26,14 +26,12 @@ def LikeSentence(request):
         getSentence_Like_Room_Lang(room, lang)[num_sentence]+=1
     except KeyError:
         getSentence_Like_Room_Lang(room, lang)[num_sentence]=1
-    print(sentence_like)
 
 def UnlikeSentence(request):
     num_sentence = int(request.form.get('nb_sentence'))
     lang = request.form.get('lang')
     room = request.form.get('room')
     getSentence_Like_Room_Lang(room, lang)[num_sentence]-=1
-    print(sentence_like)
 
 
 # returns the most liked sentence for each language
@@ -52,7 +50,6 @@ def Mostly_liked_sentences(room):
     for language in LANGUAGES:
         sentence_key_memory = -1
         sentence_like_memory = -1
-        print(sentence_like)
         for sentence_key in getSentence_Like_Room_Lang(room, language).keys():
             if (getSentence_Like_Room_Lang(room, language)[sentence_key] > sentence_like_memory):
                 sentence_like_memory = sentence_like[language][sentence_key]
@@ -65,7 +62,7 @@ def Mostly_liked_sentences(room):
             result[language] = {"sentence": "", "nb_likes": sentence_like_memory}
 
     result = {'liked_sentences': result}
-    print("end of confrence :", result)
+    print("Mostly_liked_sentences", result)
     return jsonify(result)
 
 

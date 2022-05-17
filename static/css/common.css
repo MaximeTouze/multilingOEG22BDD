@@ -5,10 +5,12 @@
 
 html, body  {
   height:100%;
+  font-family:sans-serif;
   font-size: 140%;
 }
 
 div.basic_color_cell  {
+  font-family:sans-serif;
   padding: 10px;
   background: #2C2D3A;
   border: 1px solid white;
@@ -19,6 +21,7 @@ div.basic_color_cell  {
 }
 
 div.selected_color_cell  {
+  font-family:sans-serif;
   padding: 10px;
   background: #E1F566;
   border: 1px solid #E1F566;
