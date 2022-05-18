@@ -52,7 +52,7 @@ def LikeSentence(request):
             like += 1
         except TypeError as e:
             curr.execute(
-                "INSERT INTO Likes(nb_ara, nb_en, nb_fr, nb_sp, sentence_id) VALUES(?, ?, ?, ?, ?)",
+                "INSERT INTO Likes(arabic_like , english_like , french_like , spanish_like , sentence_id) VALUES(?, ?, ?, ?, ?)",
                 (0, 0, 0, 0, num_sentence)
             )
         curr.execute(
