@@ -26,9 +26,11 @@ def LikeSentence(request):
 
     #cache
     try:
-        getSentence_Like_Room_Lang(room, lang)[num_sentence]+=1
+        #getSentence_Like_Room_Lang(room, lang)[num_sentence]+=1
+        pass
     except KeyError:
-        getSentence_Like_Room_Lang(room, lang)[num_sentence]=1
+        #getSentence_Like_Room_Lang(room, lang)[num_sentence]=1
+        pass
 
     #DB
 
