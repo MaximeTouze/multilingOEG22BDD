@@ -68,6 +68,7 @@ def LikeSentence(request):
                 like = like +1
                 curr.execute(
                     "UPDATE Likes SET arabic_score = like WHERE sentence_id=?", (num_sentence,)
+                    connect.commit()
                 )
             except Exception as e:
                 print(f"Erreur while UPDATE arabic_score: {e}")
@@ -91,6 +92,7 @@ def LikeSentence(request):
                 like = like +1
                 curr.execute(
                     "UPDATE Likes SET english_score = like WHERE sentence_id=?", (num_sentence,)
+                    connect.commit()
                 )
             except Exception as e:
                 print(f"Erreur while UPDATE english_score: {e}")
@@ -114,6 +116,7 @@ def LikeSentence(request):
                 like = like +1
                 curr.execute(
                     "UPDATE Likes SET french_score = like WHERE sentence_id=?", (num_sentence,)
+                    connect.commit()
                 )
             except Exception as e:
                 print(f"Erreur while UPDATE french_score: {e}")
@@ -138,13 +141,14 @@ def LikeSentence(request):
                 like = like +1
                 curr.execute(
                     "UPDATE Likes SET spanish_score = like WHERE sentence_id=?", (num_sentence,)
+                    connect.commit()
                 )
             except Exception as e:
                 print(f"Erreur while UPDATE spanish_score: {e}")
         else:
             print("Il n'y a pas de like pour cette phrase")
     
-    connect.commit()
+    #connect.commit()
 
     connect.close()
 
