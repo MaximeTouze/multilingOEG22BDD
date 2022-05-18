@@ -19,9 +19,9 @@ def connection():
     try:
         connect = mariadb.connect(
             user = "root",
-            password = "oegP@ss22LS2N",
+            #password = "oegP@ss22LS2N",
             #host= "172.26.70.167",
-            host= "172.26.70.167",
+            host= "localhost",
             port=3306,
             database= "oeglab"
         )
