@@ -37,7 +37,7 @@ def LikeSentence(request):
     (curr, connect) = connection()
     if lang == 'ara':
         like = curr.execute(
-            "SELECT arabic_like WHERE sentence_id=num_sentence"
+            "SELECT arabic_like FROM Likes WHERE sentence_id=num_sentence"
         )
         like += 1
         curr.execute(
@@ -45,7 +45,7 @@ def LikeSentence(request):
         )
     if lang == 'eng':
         like = curr.execute(
-            "SELECT english_like WHERE sentence_id=num_sentence"
+            "SELECT english_like FROM Likes WHERE sentence_id=num_sentence"
         )
         like += 1
         curr.execute(
@@ -53,7 +53,7 @@ def LikeSentence(request):
         )
     if lang == 'fr':
         like = curr.execute(
-            "SELECT french_like WHERE sentence_id=num_sentence"
+            "SELECT french_like FROM Likes WHERE sentence_id=num_sentence"
         )
         like += 1
         curr.execute(
@@ -61,7 +61,7 @@ def LikeSentence(request):
         )
     if lang == 'esp':
         like =  curr.execute(
-            "SELECT spanish_like WHERE sentence_id=num_sentence"
+            "SELECT spanish_like FROM Likes WHERE sentence_id=num_sentence"
         )
         like += 1
         curr.execute(
@@ -84,7 +84,7 @@ def UnlikeSentence(request):
     (curr, connect) = connection()
     if lang == 'ara':
         like = curr.execute(
-            "SELECT arabic_like WHERE sentence_id=num_sentence"
+            "SELECT arabic_like FROM Likes WHERE sentence_id=num_sentence"
         )
         if like == 0:
             like = 0
@@ -96,7 +96,7 @@ def UnlikeSentence(request):
         )
     if lang == 'eng':
         like = curr.execute(
-            "SELECT english_like WHERE sentence_id=num_sentence"
+            "SELECT english_like FROM Likes WHERE sentence_id=num_sentence"
         )
         if like == 0:
             like = 0
@@ -107,7 +107,7 @@ def UnlikeSentence(request):
         )
     if lang == 'fr':
         like = curr.execute(
-            "SELECT french_like WHERE sentence_id=num_sentence"
+            "SELECT french_like FROM Likes WHERE sentence_id=num_sentence"
         )
         if like == 0:
             like = 0
@@ -118,7 +118,7 @@ def UnlikeSentence(request):
         )
     if lang == 'esp':
         like =  curr.execute(
-            "SELECT spanish_like WHERE sentence_id=num_sentence"
+            "SELECT spanish_like FROM Likes WHERE sentence_id=num_sentence"
         )
         if like == 0:
             like = 0
