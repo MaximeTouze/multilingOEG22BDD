@@ -32,43 +32,43 @@ def LikeSentence(request):
 
     #DB
 
-    connection = connection()
+    connect = connection()
     if lang == 'ara':
-        like = connection.exectute(
+        like = connect.exectute(
             "SELECT arabic_like WHERE sentence_id=num_sentence"
         )
         like += 1
-        connection.execute(
+        connect.execute(
             "UPDATE Likes SET arabic_score = like WHERE sentence_id = num_sentence"
         )
     if lang == 'eng':
-        like = connection.exectute(
+        like = connect.exectute(
             "SELECT english_lie WHERE sentence_id=num_sentence"
         )
         like += 1
-        connection.execute(
+        connect.execute(
             "UPDATE Likes SET english_score = like WHERE sentence_id = num_sentence"
         )
     if lang == 'fr':
-        like = connection.exectute(
+        like = connect.exectute(
             "SELECT french_like WHERE sentence_id=num_sentence"
         )
         like += 1
-        connection.execute(
+        connect.execute(
             "UPDATE Likes SET french_score = like WHERE sentence_id = num_sentence"
         )
     if lang == 'esp':
-        like =  connection.exectute(
+        like =  connect.exectute(
             "SELECT spanish_like WHERE sentence_id=num_sentence"
         )
         like += 1
-        connection.execute(
+        connect.execute(
             "UPDATE Likes SET spanish_score = like WHERE sentence_id = num_sentence"
         )
 
     #connection.commit()
 
-    connection.close()
+    connect.close()
 
 def UnlikeSentence(request):
     num_sentence = int(request.form.get('nb_sentence'))
@@ -79,56 +79,56 @@ def UnlikeSentence(request):
     getSentence_Like_Room_Lang(room, lang)[num_sentence]-=1
 
     #DB
-    connection = connection()
+    connect = connection()
     if lang == 'ara':
-        like = connection.exectute(
+        like = connect.exectute(
             "SELECT arabic_like WHERE sentence_id=num_sentence"
         )
         if like == 0:
             like = 0
         else:
             like -= 1
-        connection.execute(
+        connect.execute(
             "UPDATE Likes SET arabic_score = like WHERE sentence_id = num_sentence"
         )
     if lang == 'eng':
-        like = connection.exectute(
-            "SELECT english_lie WHERE sentence_id=num_sentence"
+        like = connect.exectute(
+            "SELECT english_like WHERE sentence_id=num_sentence"
         )
         if like == 0:
             like = 0
         else:
             like -= 1
-        connection.execute(
+        connect.execute(
             "UPDATE Likes SET english_score = like WHERE sentence_id = num_sentence"
         )
     if lang == 'fr':
-        like = connection.exectute(
+        like = connect.exectute(
             "SELECT french_like WHERE sentence_id=num_sentence"
         )
         if like == 0:
             like = 0
         else:
             like -= 1
-        connection.execute(
+        connect.execute(
             "UPDATE Likes SET french_score = like WHERE sentence_id = num_sentence"
         )
     if lang == 'esp':
-        like =  connection.exectute(
+        like =  connect.exectute(
             "SELECT spanish_like WHERE sentence_id=num_sentence"
         )
         if like == 0:
             like = 0
         else:
             like -= 1
-        connection.execute(
+        connect.execute(
             "UPDATE Likes SET spanish_score = like WHERE sentence_id = num_sentence"
         )
-    
+
     #connection.commit()
 
-    connection.close()
-    return lang, num_sentence
+    connect.close()
+    return
 
 
 # returns the most liked sentence for each language
