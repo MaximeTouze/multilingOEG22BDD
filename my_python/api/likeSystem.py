@@ -45,7 +45,7 @@ def LikeSentence(request):
         )
     if lang == 'eng':
         like = curr.execute(
-            "SELECT english_like FROM Likes WHERE sentence_id=num_sentence"
+            "SELECT english_like FROM Likes WHERE sentence_id=?", (num_sentence,)
         )
         like += 1
         curr.execute(
