@@ -20,7 +20,8 @@ def connection():
         connect = mariadb.connect(
             user = "root",
             password = "oegP@ss22LS2N",
-            host= "172.26.70.167",
+            #host= "172.26.70.167",
+            host= "localhost",
             port=3306,
             database= "oeglab"
         )
@@ -29,6 +30,6 @@ def connection():
         sys.exit(1)
 
     # Get the cursor
-    cur = conn.cursor()
+    cur = connect.cursor()
 
     return cur
