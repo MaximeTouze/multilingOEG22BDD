@@ -115,7 +115,7 @@ def UnlikeSentence(request):
     room = request.form.get('room')
 
     # cache
-    getSentence_Like_Room_Lang(room, lang)[num_sentence]-=1
+    #getSentence_Like_Room_Lang(room, lang)[num_sentence]-=1
 
     #DB
     (curr, connect) = connection()
