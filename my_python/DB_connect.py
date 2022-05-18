@@ -33,4 +33,4 @@ def connection():
     # Get the cursor
     cur = connect.cursor()
 
-    return cur
+    return (cur, connect)
