@@ -224,19 +224,24 @@ def SentenceInsertion():
     conf_id = conf_id
     temps = "now()"
 
-    connection.execute(
-        "INSERT INTO Sentence(english, french, spanish, arabic, conf_id, temps) VALUES(?, ?, ?, ?, ?, ?)",
-        (english, french, spanish, arabic, conf_id, temps)
-    )
-
+    try:
+        connection.execute(
+            "INSERT INTO Sentence(english, french, spanish, arabic, conf_id, temps) VALUES(?, ?, ?, ?, ?, ?)",
+            (english, french, spanish, arabic, conf_id, temps)
+        )
+        connection.commit()
+    except mariadb.Error as e:
+        print(f"Error: {e}")
     
-
-    connection.execute(
-        "INSERT INTO Conference(id, conferenceTitle, conference_date, langue) VALUES(?, ?, ?, ?)",
-        (conf_id, conferenceTitle, conference_date, langue)
-    )
-
-    connection.commit()
+    try:
+        connection.execute(
+            "INSERT INTO Conference(id, conferenceTitle, conference_date, langue) VALUES(?, ?, ?, ?)",
+            (conf_id, conferenceTitle, conference_date, langue)
+        )
+        connection.commit()
+    except mariadb.Error as e:
+        print(f"Erroeurrrrrr: {e}")
+        
 
     # Close the database connection
     connection.close()
