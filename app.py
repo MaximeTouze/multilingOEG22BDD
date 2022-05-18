@@ -76,7 +76,7 @@ def sentences():
         "SELECT (english, french, spanish, arabic) FROM Sentence WHERE id=num_sentence"
     )
 
-    connect.commit()
+    #connect.commit()
 
     connect.close()
     #return jsonify({'sentences': sentences})
@@ -236,7 +236,7 @@ def SentenceInsertion():
             (english, french, spanish, arabic, conf_id)
         )
         print('je vais jusque là3')
-        connect.commit()
+        #connect.commit()
     except mariadb.Error as e:
         print(f"Error: {e}")
     print('je vais jusque là4')
@@ -247,7 +247,7 @@ def SentenceInsertion():
             (conf_id, conferenceTitle, langue)
         )
         print('je vais jusque là6')
-        connect.commit()
+        #connect.commit()
     except mariadb.Error as e:
         print(f"Erroeurrrrrr: {e}")
 
