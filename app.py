@@ -74,6 +74,8 @@ def sentences():
         "SELECT (english, french, spanish, arabic) FROM Sentence WHERE id=num_sentence"
     )
 
+    connection.commit()
+
     connection.close()
     #return jsonify({'sentences': sentences})
     return jsonify({'sentences': sent})
@@ -231,6 +233,8 @@ def SentenceInsertion():
         "INSERT INTO Conference(id, conferenceTitle, conference_date, langue) VALUES(?, ?, ?, ?)",
         (conf_id, conferenceTitle, conference_date, langue)
     )
+
+    connection.commit()
 
     # Close the database connection
     connection.close()
