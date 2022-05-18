@@ -91,7 +91,8 @@ def LikeSentence(request):
             "SELECT id, spanish_like FROM Likes WHERE sentence_id=?",(num_sentence,)
         )
         print(curr)
-
+        like = None
+        id = None
         for (id_, lik) in curr:
             like = lik
             id = id_
@@ -107,8 +108,6 @@ def LikeSentence(request):
                 (0, 0, 0, 1, num_sentence)
             )
 
-    connect.commit()
-    connect.close()
 
 
 def UnlikeSentence(request):
