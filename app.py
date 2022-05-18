@@ -140,8 +140,8 @@ def updateWordCloud():
 
     values = request.form
 
-    #path = "/var/www/html/multilingOEG22/static/exposed"
-    path = "./static/exposed"
+    #path = "/var/www/html/multilingOEG22/static/exposed" #hosted
+    path = "./static/exposed" #local
 
     # Bytes to string
     #mem = ''.join(map(chr, mem))
@@ -183,14 +183,16 @@ def getSentence_Like_Room_Lang(room, lang):
 
 
 
-@app.route("/insertion", methods=['PUT'])
+@app.route("/insertion", methods=['POST'])
 def SentenceInsertion():
     values = request.data
     # Bytes to string
     values = values.decode('utf8')
+
     #values = ''.join(map(chr, mem))
     # String to json
     #values = '"'.join(mem.split("'"))
+
     # Json to dictionnary
     values = json.loads(values)
     print (values)
