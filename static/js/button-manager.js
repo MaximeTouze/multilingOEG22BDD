@@ -46,7 +46,7 @@ const LikeSentence = function (sentence_num) {
    url:'/likeSentence',
    data:{
      'nb_sentence':2,
-     'lang':"eng",
+     'lang':"esp",
      'room':1
    },
    success:function(response) {}
@@ -54,7 +54,7 @@ const LikeSentence = function (sentence_num) {
 }
 
 const UnlikeSentence = function (sentence_num) {
-  ChangeSentenceUnlikeButtonToLike(sentence_num);
+  /*ChangeSentenceUnlikeButtonToLike(sentence_num);
   $.ajax({
     type:'POST',
     url:'/UnlikeSentence',
@@ -63,5 +63,15 @@ const UnlikeSentence = function (sentence_num) {
       'lang':selected_language
     },
     success:function(response) {}
+ });*/
+ $.ajax({
+   type:'POST',
+   url:'/UnlikeSentence',
+   data:{
+     'nb_sentence':2,
+     'lang':"esp",
+     'room':1
+   },
+   success:function(response) {}
  });
 }
