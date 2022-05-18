@@ -36,7 +36,7 @@ def LikeSentence(request):
 
     (curr, connect) = connection()
     if lang == 'ara':
-        like = curr.exectute(
+        like = curr.execute(
             "SELECT arabic_like WHERE sentence_id=num_sentence"
         )
         like += 1
@@ -44,7 +44,7 @@ def LikeSentence(request):
             "UPDATE Likes SET arabic_score = like WHERE sentence_id = num_sentence"
         )
     if lang == 'eng':
-        like = curr.exectute(
+        like = curr.execute(
             "SELECT english_lie WHERE sentence_id=num_sentence"
         )
         like += 1
@@ -52,7 +52,7 @@ def LikeSentence(request):
             "UPDATE Likes SET english_score = like WHERE sentence_id = num_sentence"
         )
     if lang == 'fr':
-        like = curr.exectute(
+        like = curr.execute(
             "SELECT french_like WHERE sentence_id=num_sentence"
         )
         like += 1
@@ -60,7 +60,7 @@ def LikeSentence(request):
             "UPDATE Likes SET french_score = like WHERE sentence_id = num_sentence"
         )
     if lang == 'esp':
-        like =  curr.exectute(
+        like =  curr.execute(
             "SELECT spanish_like WHERE sentence_id=num_sentence"
         )
         like += 1
@@ -83,7 +83,7 @@ def UnlikeSentence(request):
     #DB
     (curr, connect) = connection()
     if lang == 'ara':
-        like = curr.exectute(
+        like = curr.execute(
             "SELECT arabic_like WHERE sentence_id=num_sentence"
         )
         if like == 0:
@@ -94,7 +94,7 @@ def UnlikeSentence(request):
             "UPDATE Likes SET arabic_score = like WHERE sentence_id = num_sentence"
         )
     if lang == 'eng':
-        like = curr.exectute(
+        like = curr.execute(
             "SELECT english_like WHERE sentence_id=num_sentence"
         )
         if like == 0:
@@ -105,7 +105,7 @@ def UnlikeSentence(request):
             "UPDATE Likes SET english_score = like WHERE sentence_id = num_sentence"
         )
     if lang == 'fr':
-        like = curr.exectute(
+        like = curr.execute(
             "SELECT french_like WHERE sentence_id=num_sentence"
         )
         if like == 0:
@@ -116,7 +116,7 @@ def UnlikeSentence(request):
             "UPDATE Likes SET french_score = like WHERE sentence_id = num_sentence"
         )
     if lang == 'esp':
-        like =  curr.exectute(
+        like =  curr.execute(
             "SELECT spanish_like WHERE sentence_id=num_sentence"
         )
         if like == 0:
