@@ -36,6 +36,7 @@ def LikeSentence(request):
 
     (curr, connect) = connection()
     if lang == 'ara':
+        """
         try:
             like = curr.execute(
                 "SELECT arabic_like FROM Likes WHERE sentence_id=?", (num_sentence)
@@ -43,6 +44,12 @@ def LikeSentence(request):
         except Exception as e:
             print(f"Erreur while doing select arabic_like: {e}")
         """
+        
+        like = curr.execute(
+            "SELECT arabic_like FROM Likes WHERE sentence_id=?", (num_sentence)
+        )
+        """
+
         try:
             like = like + 1
             curr.execute(
@@ -68,13 +75,17 @@ def LikeSentence(request):
             print("Il n'y a pas de like pour cette phrase")
 
     if lang == 'eng':
+        """
         try:
             like = curr.execute(
                 "SELECT english_like FROM Likes WHERE sentence_id=?", (num_sentence)
             )
         except Exception as e:
             print(f"Erreur while doing select english_like: {e}")
-
+        """
+        like = curr.execute(
+            "SELECT english_like FROM Likes WHERE sentence_id=?", (num_sentence)
+        )
         if like:
             try:
                 like = like +1
@@ -87,13 +98,17 @@ def LikeSentence(request):
             print("Il n'y a pas de like pour cette phrase")
 
     if lang == 'fr':
+        """
         try:
             like = curr.execute(
                 "SELECT french_like FROM Likes WHERE sentence_id=?", (num_sentence)
             )
         except Exception as e:
             print(f"Erreur while doing select french_like: {e}")
-            
+        """
+        like = curr.execute(
+            "SELECT french_like FROM Likes WHERE sentence_id=?", (num_sentence)
+        )
         if like:
             try:
                 like = like +1
@@ -106,13 +121,18 @@ def LikeSentence(request):
             print("Il n'y a pas de like pour cette phrase")
 
     if lang == 'esp':
+        """
         try:
             like = curr.execute(
                 "SELECT spanish_like FROM Likes WHERE sentence_id=?", (num_sentence)
             )
         except Exception as e:
             print(f"Erreur while doing select spanish_like: {e}")
-            
+        
+        """
+        like = curr.execute(
+            "SELECT spanish_like FROM Likes WHERE sentence_id=?", (num_sentence)
+        )
         if like:
             try:
                 like = like +1
