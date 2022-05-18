@@ -71,14 +71,14 @@ def sentences():
 
     #sentences = CacheDataManager.getDisplayed_sentences_room_language_from(room, lang, num_sentence)
     # Get from the database
-    connection = connection()
-    sent = connection.execute(
+    connect = connection()
+    sent = connect.execute(
         "SELECT (english, french, spanish, arabic) FROM Sentence WHERE id=num_sentence"
     )
 
-    connection.commit()
+    connect.commit()
 
-    connection.close()
+    connect.close()
     #return jsonify({'sentences': sentences})
     return jsonify({'sentences': sent})
 
