@@ -91,6 +91,8 @@ def LikeSentence(request):
             "SELECT spanish_like FROM Likes WHERE sentence_id=?",(num_sentence,)
         )
         print(curr)
+        for like in curr:
+            print("lik", like)
         try:
             like = like +1
             curr.execute(
