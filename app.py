@@ -207,7 +207,6 @@ def SentenceInsertion():
     esp_sentence = values['sentences'][LangConst.TRAD_SPANISH]
     ara_sentence = values['sentences'][LangConst.TRAD_ARAB]
 
-    return jsonify({'status_code': '200'})
 
     # Database insertion
     connection = connection()
@@ -254,6 +253,7 @@ def SentenceInsertion():
 
     # Close the database connection
     connection.close()
+    return jsonify({'status_code': '200'})
 
 
 
