@@ -123,6 +123,9 @@ def updateWordCloud():
 
     values = request.form
 
+    #path = "/var/www/html/multilingOEG22/static/exposed"
+    path = "./static/exposed"
+
     # Bytes to string
     #mem = ''.join(map(chr, mem))
     # String to json
@@ -133,7 +136,7 @@ def updateWordCloud():
     for k,v in values.items():
         decoded = base64.b64decode(v)
         lang = LangConst.REVERSE_MATCHER[k]
-        image_result = open(f'/var/www/html/multilingOEG22/static/exposed/WordCloud_{lang}.png', 'wb')
+        image_result = open(f'{path}/word_cloud.{lang}.png', 'wb')
         image_result.write(decoded)
 
     #if os.path.exists(name):
@@ -180,6 +183,7 @@ def SentenceInsertion():
     fr_sentence = values['sentences'][LangConst.TRAD_FRENCH]
     esp_sentence = values['sentences'][LangConst.TRAD_SPANISH]
     ara_sentence = values['sentences'][LangConst.TRAD_ARAB]
+
     return jsonify({'status_code': '200'})
 
 
