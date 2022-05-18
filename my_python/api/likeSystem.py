@@ -62,7 +62,6 @@ def LikeSentence(request):
             like = like +1
             curr.execute(
                 "UPDATE Likes SET english_score = like WHERE sentence_id=?", (num_sentence,)
-                connect.commit()
             )
         except TypeError as e:
             curr.execute(
