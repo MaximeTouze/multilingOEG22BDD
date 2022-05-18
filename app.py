@@ -214,7 +214,8 @@ def SentenceInsertion():
     # Conference
     conf_id = conf_id
     conferenceTitle = conf_name
-    conference_date = "now()"
+    #now = datetime.now()
+    #conference_date = now.strftime('%Y-%m-%d %H:%M:%S')
     langue = conf_lang
 
     # Sentence
@@ -223,13 +224,14 @@ def SentenceInsertion():
     spanish = esp_sentence
     arabic = ara_sentence
     #score =
+
     conf_id = conf_id
-    temps = "now()"
+    #temps = now.strftime('%Y-%m-%d %H:%M:%S')
 
     try:
         connection.execute(
-            "INSERT INTO Sentence(english, french, spanish, arabic, conf_id, temps) VALUES(?, ?, ?, ?, ?, ?)",
-            (english, french, spanish, arabic, conf_id, temps)
+            "INSERT INTO Sentence(english, french, spanish, arabic, conf_id) VALUES(?, ?, ?, ?, ?)",
+            (english, french, spanish, arabic, conf_id)
         )
         connection.commit()
     except mariadb.Error as e:
@@ -237,8 +239,8 @@ def SentenceInsertion():
     
     try:
         connection.execute(
-            "INSERT INTO Conference(id, conferenceTitle, conference_date, langue) VALUES(?, ?, ?, ?)",
-            (conf_id, conferenceTitle, conference_date, langue)
+            "INSERT INTO Conference(id, conferenceTitle, langue) VALUES(?, ?, ?)",
+            (conf_id, conferenceTitle, langue)
         )
         connection.commit()
     except mariadb.Error as e:
