@@ -1,25 +1,110 @@
-#grid-column-languages-selection {
-  display: grid;
-  grid-template-columns: 20% 20% 20% 20% 20%;
-  width: 100%;
-  height: 15%;
+
+@media (min-width: 641px) {
+  #grid-column-languages-selection {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20% 20%;
+    width: 100%;
+    height: 15%;
+  }
+
+  #grid-column-display {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    width: 100%;
+    height: 85%;
+    position: relative;
+  }
+
+  #grid-column-display-selection {
+    display: grid;
+    grid-auto-flow: row;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+
+  .grid-container{
+    font-size: 0.7em;
+  }
+
+  #grid-column-languages-selection {
+    display: grid;
+    grid-template-columns: repeat(3, 33.3333%);
+    width: 100%;
+    height: 15%;
+  }
+
+  #eng-button{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 1;
+  }
+
+  #fr-button{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 1;
+  }
+
+  #esp-button{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 2;
+  }
+
+  #ara-button{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 2;
+  }
+
+  #settings-button{
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+  
+  #grid-column-display {
+    display: grid;
+    grid-template-rows: 80% 20%;
+    width: 100%;
+    height: 85%;
+    position: relative;
+  }
+
+  #grid-column-display-selection {
+    display: grid;
+    grid-auto-flow: column;
+    width: 100%;
+  }
+}
+
+
+#grid-column-languages-selection div, 
+#grid-column-display-selection div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .view-display {
 }
 
-#grid-column-display {
-  display: grid;
-  grid-template-columns: 80% 20%;
-  width: 100%;
-  height: 85%;
-}
+#displayPanel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-#grid-column-display-selection {
-  display: grid;
-  grid-template-columns: auto;
-  width: 100%;
-  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 #grid-row1 {

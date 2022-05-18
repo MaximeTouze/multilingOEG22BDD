@@ -12,9 +12,9 @@ html, body  {
 div.basic_color_cell  {
   font-family:sans-serif;
   padding: 10px;
-  background: #2C2D3A;
-  border: 1px solid white;
-  color: white;
+  background: white;
+  border: 1px solid blue;
+  color: blue;
   opacity: 0.9;
   vertical-align: center;
   text-align: center;
@@ -23,9 +23,9 @@ div.basic_color_cell  {
 div.selected_color_cell  {
   font-family:sans-serif;
   padding: 10px;
-  background: #E1F566;
-  border: 1px solid #E1F566;
-  color: #2C2D3A;
+  background: blue;
+  border: 1px solid white;
+  color: white;
   opacity: 0.9;
   vertical-align: center;
   text-align: center;

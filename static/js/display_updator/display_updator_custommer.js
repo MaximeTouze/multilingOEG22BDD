@@ -50,6 +50,7 @@ async function display_update () {
       wordCloud_update();
 
     } else if (selected_display == SENTENCES) {
+      document.getElementById('displayPanel').style.backgroundImage ="" //Remove wordcloud if exists
       previous_display = SENTENCES;
       updateSentence();
    }
