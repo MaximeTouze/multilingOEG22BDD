@@ -104,7 +104,7 @@ def UnlikeSentence():
 @app.route("/mostly_liked_sentences", methods=['GET'])
 def Mostly_liked_sentences_api():
     room = int(request.args.get('room'))
-    conf_id = int(request.args.get('conf_id'))
+    conf_id = request.args.get('conf_id')
     mostly_liked_sentences = likeSystem.Mostly_liked_sentences(room)
     return jsonify({'sentences': mostly_liked_sentences}), 400
 
@@ -199,7 +199,7 @@ def SentenceInsertion():
     values = json.loads(values)
     print (values)
 
-    conf_id = int(values['conf_id'])
+    conf_id = values['conf_id']
     conf_name = values['conf_name']
     conf_room = values['conf_room']
     conf_lang = values['conf_lang']
@@ -228,25 +228,19 @@ def SentenceInsertion():
 
     conf_id = conf_id
     #temps = now.strftime('%Y-%m-%d %H:%M:%S')
-    print('je vais jusque là')
     try:
-        print('je vais jusque là2')
         curr.execute(
             "INSERT INTO Sentence(english, french, spanish, arabic, conf_id) VALUES(?, ?, ?, ?, ?)",
             (english, french, spanish, arabic, conf_id)
         )
-        print('je vais jusque là3')
         connect.commit()
     except mariadb.Error as e:
         print(f"Error: {e}")
-    print('je vais jusque là4')
     try:
-        print('je vais jusque là5')
         curr.execute(
             "INSERT INTO Conference(id, conferenceTitle, langue) VALUES(?, ?, ?)",
             (conf_id, conferenceTitle, langue)
         )
-        print('je vais jusque là6')
         connect.commit()
     except mariadb.Error as e:
         print(f"Erroeurrrrrr: {e}")

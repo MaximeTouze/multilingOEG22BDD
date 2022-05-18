@@ -32,7 +32,7 @@ const DisplaysButtonsFunction = function (display) {
 
 const LikeSentence = function (sentence_num) {
   ChangeSentenceLikeButtonToUnlike(sentence_num);
-  $.ajax({
+  /*$.ajax({
     type:'POST',
     url:'/likeSentence',
     data:{
@@ -40,6 +40,16 @@ const LikeSentence = function (sentence_num) {
       'lang':selected_language
     },
     success:function(response) {}
+ });*/
+ $.ajax({
+   type:'POST',
+   url:'/likeSentence',
+   data:{
+     'nb_sentence':2,
+     'lang':"eng",
+     'room':1
+   },
+   success:function(response) {}
  });
 }
 
