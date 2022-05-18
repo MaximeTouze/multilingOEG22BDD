@@ -119,7 +119,7 @@ def LikeSentence(request):
                 print(f"Erreur while UPDATE french_score: {e}")
         else:
             print("Il n'y a pas de like pour cette phrase")
-
+    
     if lang == 'esp':
         """
         try:
@@ -128,10 +128,10 @@ def LikeSentence(request):
             )
         except Exception as e:
             print(f"Erreur while doing select spanish_like: {e}")
-        
         """
+        
         like = curr.execute(
-            "SELECT spanish_like FROM Likes WHERE sentence_id=?", (num_sentence)
+            "SELECT spanish_like FROM Likes WHERE sentence_id = ?", (num_sentence)
         )
         if like:
             try:
@@ -143,64 +143,7 @@ def LikeSentence(request):
                 print(f"Erreur while UPDATE spanish_score: {e}")
         else:
             print("Il n'y a pas de like pour cette phrase")
-
-
-    """
-    if lang == 'eng':
-        like = curr.execute(
-            "SELECT english_like FROM Likes WHERE sentence_id=?", (num_sentence,)
-        )
-        print ("like", like)
-
-        try:
-            like += 1
-            curr.execute(
-                "UPDATE Likes SET english_score = like WHERE sentence_id =?", (num_sentence,)
-            )
-        except TypeError as e:
-            curr.execute(
-                "INSERT INTO Likes(arabic_like , english_like , french_like , spanish_like , sentence_id) VALUES(?, ?, ?, ?, ?)",
-                (0, 1, 0, 0, num_sentence)
-            )
-
-
-
-
-    if lang == 'fr':
-        like = curr.execute(
-            "SELECT french_like FROM Likes WHERE sentence_id=?", (num_sentence,)
-        )
-        print ("like", like)
-        try:
-            like += 1
-            curr.execute(
-                "UPDATE Likes SET french_score = like WHERE sentence_id = ?", (num_sentence,)
-            )
-        except TypeError as e:
-            curr.execute(
-                "INSERT INTO Likes(arabic_like , english_like , french_like , spanish_like , sentence_id) VALUES(?, ?, ?, ?, ?)",
-                (0, 0, 1, 0, num_sentence)
-            )
-
-
-
-    if lang == 'esp':
-        like =  curr.execute(
-            "SELECT spanish_like FROM Likes WHERE sentence_id=?", (num_sentence,)
-        )
-        print ("like", like)
-        try:
-            like += 1
-            curr.execute(
-                "UPDATE Likes SET spanish_score = like WHERE sentence_id = ?", (num_sentence,)
-            )
-        except TypeError as e:
-            curr.execute(
-                "INSERT INTO Likes(arabic_like , english_like , french_like , spanish_like , sentence_id) VALUES(?, ?, ?, ?, ?)",
-                (0, 0, 0, 1, num_sentence)
-            )
-    """
-
+    
     connect.commit()
 
     connect.close()
