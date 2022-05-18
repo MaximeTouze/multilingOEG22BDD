@@ -37,12 +37,22 @@ def LikeSentence(request):
     (curr, connect) = connection()
     if lang == 'ara':
         like = curr.execute(
-            "SELECT arabic_like FROM Likes WHERE sentence_id=num_sentence"
+            "SELECT arabic_like FROM Likes WHERE sentence_id=?", (num_sentence,)
         )
-        like += 1
-        curr.execute(
-            "UPDATE Likes SET arabic_score = like WHERE sentence_id = num_sentence"
-        )
+        try:
+            like += 1
+            curr.execute(
+                "UPDATE Likes SET arabic_score = like WHERE sentence_id = ?", (num_sentence,)
+            )
+        except TypeError as e:
+            curr.execute(
+                "INSERT INTO Likes(arabic_like , english_like , french_like , spanish_like , sentence_id) VALUES(?, ?, ?, ?, ?)",
+                (1, 0, 0, 0, num_sentence)
+            )
+
+
+
+
     if lang == 'eng':
         like = curr.execute(
             "SELECT english_like FROM Likes WHERE sentence_id=?", (num_sentence,)
@@ -50,30 +60,50 @@ def LikeSentence(request):
 
         try:
             like += 1
+            curr.execute(
+                "UPDATE Likes SET english_score = like WHERE sentence_id =?", (num_sentence,)
+            )
         except TypeError as e:
             curr.execute(
                 "INSERT INTO Likes(arabic_like , english_like , french_like , spanish_like , sentence_id) VALUES(?, ?, ?, ?, ?)",
-                (0, 0, 0, 0, num_sentence)
+                (0, 1, 0, 0, num_sentence)
             )
-        curr.execute(
-            "UPDATE Likes SET english_score = like WHERE sentence_id = num_sentence"
-        )
+
+
+
+
     if lang == 'fr':
         like = curr.execute(
-            "SELECT french_like FROM Likes WHERE sentence_id=num_sentence"
+            "SELECT french_like FROM Likes WHERE sentence_id=?", (num_sentence,)
         )
-        like += 1
-        curr.execute(
-            "UPDATE Likes SET french_score = like WHERE sentence_id = num_sentence"
-        )
+        try:
+            like += 1
+            curr.execute(
+                "UPDATE Likes SET french_score = like WHERE sentence_id = ?", (num_sentence,)
+            )
+        except TypeError as e:
+            curr.execute(
+                "INSERT INTO Likes(arabic_like , english_like , french_like , spanish_like , sentence_id) VALUES(?, ?, ?, ?, ?)",
+                (0, 0, 1, 0, num_sentence)
+            )
+
+
+
     if lang == 'esp':
         like =  curr.execute(
-            "SELECT spanish_like FROM Likes WHERE sentence_id=num_sentence"
+            "SELECT spanish_like FROM Likes WHERE sentence_id=?", (num_sentence,)
         )
-        like += 1
-        curr.execute(
-            "UPDATE Likes SET spanish_score = like WHERE sentence_id = num_sentence"
-        )
+        try:
+            like += 1
+            curr.execute(
+                "UPDATE Likes SET spanish_score = like WHERE sentence_id = ?", (num_sentence,)
+            )
+        except TypeError as e:
+            curr.execute(
+                "INSERT INTO Likes(arabic_like , english_like , french_like , spanish_like , sentence_id) VALUES(?, ?, ?, ?, ?)",
+                (0, 0, 0, 1, num_sentence)
+            )
+
 
     connect.commit()
 
@@ -91,48 +121,52 @@ def UnlikeSentence(request):
     (curr, connect) = connection()
     if lang == 'ara':
         like = curr.execute(
-            "SELECT arabic_like FROM Likes WHERE sentence_id=num_sentence"
+            "SELECT arabic_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
         )
         if like == 0:
             like = 0
+            print('ERROR ======= MORE UNLIKE THAN LIKE :: sent = ', num_sentence, '  ;;  lang = ', lang)
         else:
             like -= 1
             ###
         curr.execute(
-            "UPDATE Likes SET arabic_score = like WHERE sentence_id = num_sentence"
+            "UPDATE Likes SET arabic_score = like WHERE sentence_id = ?", (num_sentence,)
         )
     if lang == 'eng':
         like = curr.execute(
-            "SELECT english_like FROM Likes WHERE sentence_id=num_sentence"
+            "SELECT english_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
         )
         if like == 0:
             like = 0
+            print('ERROR ======= MORE UNLIKE THAN LIKE :: sent = ', num_sentence, '  ;;  lang = ', lang)
         else:
             like -= 1
         curr.execute(
-            "UPDATE Likes SET english_score = like WHERE sentence_id = num_sentence"
+            "UPDATE Likes SET english_score = like WHERE sentence_id = ?", (num_sentence,)
         )
     if lang == 'fr':
         like = curr.execute(
-            "SELECT french_like FROM Likes WHERE sentence_id=num_sentence"
+            "SELECT french_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
         )
         if like == 0:
             like = 0
+            print('ERROR ======= MORE UNLIKE THAN LIKE :: sent = ', num_sentence, '  ;;  lang = ', lang)
         else:
             like -= 1
         curr.execute(
-            "UPDATE Likes SET french_score = like WHERE sentence_id = num_sentence"
+            "UPDATE Likes SET french_score = like WHERE sentence_id =  ?", (num_sentence,)
         )
     if lang == 'esp':
         like =  curr.execute(
-            "SELECT spanish_like FROM Likes WHERE sentence_id=num_sentence"
+            "SELECT spanish_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
         )
         if like == 0:
             like = 0
+            print('ERROR ======= MORE UNLIKE THAN LIKE :: sent = ', num_sentence, '  ;;  lang = ', lang)
         else:
             like -= 1
         connect.execute(
-            "UPDATE Likes SET spanish_score = like WHERE sentence_id = num_sentence"
+            "UPDATE Likes SET spanish_score = like WHERE sentence_id =  ?", (num_sentence,)
         )
 
     connect.commit()
