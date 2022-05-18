@@ -89,7 +89,9 @@ def UnlikeSentence():
 @app.route("/mostly_liked_sentences", methods=['GET'])
 def Mostly_liked_sentences_api():
     room = int(request.args.get('room'))
-    return likeSystem.Mostly_liked_sentences(room)
+    conf_id = int(request.args.get('conf_id'))
+    mostly_liked_sentences = likeSystem.Mostly_liked_sentences(room)
+    return jsonify({'sentences': mostly_liked_sentences}), 400
 
 @app.route("/startConf", methods=['POST'])
 def startConf():
@@ -168,14 +170,14 @@ def connection():
             user = "oegadm",
             password = "oegP@ss22LS2N",
             host= "172.26.70.167",
-            port:3306,
+            port=3306,
             database= "laboeg"
         )
     except mariadb.Error as e:
-        print(f"Error while connecting to MariaDB Server:"{e})
+        print(f"Error while connecting to MariaDB Server:{e}")
         sys.exit(1)
-    
-    # Get the cursor 
+
+    # Get the cursor
     cur = conn.cursor()
 
     return cur
@@ -210,7 +212,7 @@ def SentenceInsertion():
     # Database insertion
     connection = connection()
 
-    # Conference 
+    # Conference
     conf_id = conf_id
     conferenceTitle = conf_name
     conference_date = datetime.now()
@@ -221,7 +223,7 @@ def SentenceInsertion():
     french = fr_sentence
     spanish = esp_sentence
     arabic = ara_sentence
-    #score = 
+    #score =
     conf_id = conf_id
     temps = datetime.now()
 
