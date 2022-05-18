@@ -130,6 +130,7 @@ def LikeSentence(request):
         like = curr.execute(
             "SELECT english_like FROM Likes WHERE sentence_id=?", (num_sentence,)
         )
+        print ("like", like)
 
         try:
             like += 1
@@ -149,6 +150,7 @@ def LikeSentence(request):
         like = curr.execute(
             "SELECT french_like FROM Likes WHERE sentence_id=?", (num_sentence,)
         )
+        print ("like", like)
         try:
             like += 1
             curr.execute(
@@ -166,6 +168,7 @@ def LikeSentence(request):
         like =  curr.execute(
             "SELECT spanish_like FROM Likes WHERE sentence_id=?", (num_sentence,)
         )
+        print ("like", like)
         try:
             like += 1
             curr.execute(
@@ -196,6 +199,7 @@ def UnlikeSentence(request):
         like = curr.execute(
             "SELECT arabic_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
         )
+        print ("like", like)
         if like == 0:
             like = 0
             print('ERROR ======= MORE UNLIKE THAN LIKE :: sent = ', num_sentence, '  ;;  lang = ', lang)
@@ -209,6 +213,7 @@ def UnlikeSentence(request):
         like = curr.execute(
             "SELECT english_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
         )
+        print ("like", like)
         if like == 0:
             like = 0
             print('ERROR ======= MORE UNLIKE THAN LIKE :: sent = ', num_sentence, '  ;;  lang = ', lang)
@@ -221,6 +226,7 @@ def UnlikeSentence(request):
         like = curr.execute(
             "SELECT french_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
         )
+        print ("like", like)
         if like == 0:
             like = 0
             print('ERROR ======= MORE UNLIKE THAN LIKE :: sent = ', num_sentence, '  ;;  lang = ', lang)
@@ -233,6 +239,7 @@ def UnlikeSentence(request):
         like =  curr.execute(
             "SELECT spanish_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
         )
+        print ("like", like)
         if like == 0:
             like = 0
             print('ERROR ======= MORE UNLIKE THAN LIKE :: sent = ', num_sentence, '  ;;  lang = ', lang)
