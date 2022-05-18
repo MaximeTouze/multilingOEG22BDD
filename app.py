@@ -275,7 +275,7 @@ def connection():
             user = "root",
             password = "oegP@ss22LS2N",
             host= "172.26.70.167",
-            port:3306,
+            port=3306,
             database= "oeglab"
         )
     except mariadb.Error as e:
