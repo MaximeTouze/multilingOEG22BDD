@@ -19,11 +19,11 @@ def connection():
     try:
         connect = mariadb.connect(
             user = "root",
-            #password = "",
+            password = "oegP@ss22LS2N",
             #host= "172.26.70.167",
             #host= "localhost",
-            host= "127.0.0.1",
-            port=3306,
+            #host= "127.0.0.1",
+            #port=3306,
             database= "oeglab"
         )
     except mariadb.Error as e:
