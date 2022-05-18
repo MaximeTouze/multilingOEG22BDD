@@ -21,7 +21,8 @@ def connection():
             user = "root",
             #password = "",
             #host= "172.26.70.167",
-            host= "localhost",
+            #host= "localhost",
+            host= "127.0.0.1",
             port=3306,
             database= "oeglab"
         )
