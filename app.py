@@ -4,6 +4,7 @@ import wave, struct
 import json
 import js2py
 import re
+import mariadb
 import os as os
 
 import base64
@@ -11,7 +12,7 @@ import base64
 
 from datetime import datetime
 
-import my_python.word_cloud_generation.word_cloud_generation as word_cloud_generation
+#import my_python.word_cloud_generation.word_cloud_generation as word_cloud_generation
 import my_python.api.conf_manager as ConfManager
 import my_python.manager.cache_data_manager as CacheDataManager
 import my_python.api.likeSystem as likeSystem
@@ -55,7 +56,7 @@ def view():
 def update():
     text = request.form['text']
     language = request.form['lang']
-    word_cloud_generation.getCloudFromTextAndLanguage(text, language)
+    #word_cloud_generation.getCloudFromTextAndLanguage(text, language)
     return render_template('record.html')
 
 
