@@ -87,10 +87,10 @@ def LikeSentence(request):
             )
 
     if lang == 'esp':
-        like = curr.execute(
+        curr.execute(
             "SELECT spanish_like FROM Likes WHERE sentence_id=?",(num_sentence,)
         )
-        connect.commit()
+        print(curr)
         try:
             like = like +1
             curr.execute(
