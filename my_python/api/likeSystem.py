@@ -88,15 +88,18 @@ def LikeSentence(request):
 
     if lang == 'esp':
         curr.execute(
-            "SELECT spanish_like FROM Likes WHERE sentence_id=?",(num_sentence,)
+            "SELECT id, spanish_like FROM Likes WHERE sentence_id=?",(num_sentence,)
         )
         print(curr)
-        for like in curr:
-            print("lik", like)
+
+        for (id_, lik) in curr:
+            like = lik
+            id = id_
+            print("like", like)
         try:
             like = like +1
             curr.execute(
-                "UPDATE Likes SET spanish_score = like WHERE sentence_id=?", (num_sentence,)
+                "UPDATE Likes SET spanish_score = like WHERE id=?", (id,)
             )
         except TypeError as e:
             curr.execute(
