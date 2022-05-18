@@ -209,7 +209,7 @@ def SentenceInsertion():
 
 
     # Database insertion
-    connection = connection()
+    connect = connection()
 
     # Conference
     conf_id = conf_id
@@ -230,29 +230,29 @@ def SentenceInsertion():
     print('je vais jusque là')
     try:
         print('je vais jusque là2')
-        connection.execute(
+        connect.execute(
             "INSERT INTO Sentence(english, french, spanish, arabic, conf_id) VALUES(?, ?, ?, ?, ?)",
             (english, french, spanish, arabic, conf_id)
         )
         print('je vais jusque là3')
-        connection.commit()
+        connect.commit()
     except mariadb.Error as e:
         print(f"Error: {e}")
     print('je vais jusque là4')
     try:
         print('je vais jusque là5')
-        connection.execute(
+        connect.execute(
             "INSERT INTO Conference(id, conferenceTitle, langue) VALUES(?, ?, ?)",
             (conf_id, conferenceTitle, langue)
         )
         print('je vais jusque là6')
-        connection.commit()
+        connect.commit()
     except mariadb.Error as e:
         print(f"Erroeurrrrrr: {e}")
 
 
     # Close the database connection
-    connection.close()
+    connect.close()
     return jsonify({'status_code': '200'})
 
 
