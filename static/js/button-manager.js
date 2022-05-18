@@ -31,7 +31,7 @@ const DisplaysButtonsFunction = function (display) {
 }
 
 const LikeSentence = function (sentence_num) {
-  ChangeSentenceLikeButtonToUnlike(sentence_num);
+  //ChangeSentenceLikeButtonToUnlike(sentence_num);
   /*$.ajax({
     type:'POST',
     url:'/likeSentence',
