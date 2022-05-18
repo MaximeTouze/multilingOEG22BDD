@@ -9,6 +9,8 @@ import os as os
 import base64
 
 
+from datetime import datetime
+
 import my_python.word_cloud_generation.word_cloud_generation as word_cloud_generation
 import my_python.api.conf_manager as ConfManager
 import my_python.manager.cache_data_manager as CacheDataManager
@@ -160,6 +162,25 @@ def updateWordCloud():
 
 
 
+def connection():
+    try:
+        connect = mariadb.connect(
+            user = "oegadm",
+            password = "oegP@ss22LS2N",
+            host= "172.26.70.167",
+            port:3306,
+            database= "laboeg"
+        )
+    except mariadb.Error as e:
+        print(f"Error while connecting to MariaDB Server:"{e})
+        sys.exit(1)
+    
+    # Get the cursor 
+    cur = conn.cursor()
+
+    return cur
+
+
 
 
 
@@ -185,6 +206,40 @@ def SentenceInsertion():
     ara_sentence = values['sentences'][LangConst.TRAD_ARAB]
 
     return jsonify({'status_code': '200'})
+
+    # Database insertion
+    connection = connection()
+
+    # Conference 
+    conf_id = conf_id
+    conferenceTitle = conf_name
+    conference_date = datetime.now()
+    langue = conf_lang
+
+    # Sentence
+    english = eng_sentence
+    french = fr_sentence
+    spanish = esp_sentence
+    arabic = ara_sentence
+    #score = 
+    conf_id = conf_id
+    temps = datetime.now()
+
+    connection.execute(
+        "INSERT INTO Sentence(english, french, spanish, arabic, conf_id, temps) VALUES(?, ?, ?, ?, ?, ?)",
+        (english, french, spanish, arabic, conf_id, temps)
+    )
+
+    connection.execute(
+        "INSERT INTO Conference(id, conferenceTitle, conference_date, langue) VALUES(?, ?, ?, ?)",
+        (conf_id, conferenceTitle, conference_date, langue)
+    )
+
+    # Close the database connection
+    connection.close()
+
+
+
 
 
 
