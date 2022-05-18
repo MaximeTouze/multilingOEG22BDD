@@ -15,6 +15,7 @@ import my_python.word_cloud_generation.word_cloud_generation as word_cloud_gener
 import my_python.api.conf_manager as ConfManager
 import my_python.manager.cache_data_manager as CacheDataManager
 import my_python.api.likeSystem as likeSystem
+from my_python.DB_connect import connection
 import my_python.const.lang_const as LangConst
 
 #import jsonpickle
@@ -66,8 +67,17 @@ def sentences():
     room = int(request.args.get('room'))
     lang = request.args.get('lang')
 
-    sentences = CacheDataManager.getDisplayed_sentences_room_language_from(room, lang, num_sentence)
-    return jsonify({'sentences': sentences})
+    #sentences = CacheDataManager.getDisplayed_sentences_room_language_from(room, lang, num_sentence)
+    # Get from the database
+    connection = connection()
+    sent = connection.execute(
+        "SELECT (english, french, spanish, arabic) FROM Sentence WHERE id=num_sentence"
+    )
+
+    connection.close()
+    #return jsonify({'sentences': sentences})
+    return jsonify({'sentences': sent})
+
 
 
 
@@ -81,6 +91,7 @@ def LikeSentence():
 @app.route("/UnlikeSentence", methods=['POST'])
 def UnlikeSentence():
     likeSystem.UnlikeSentence(request)
+
     return render_template('view.html')
 
 ################################
@@ -89,7 +100,9 @@ def UnlikeSentence():
 @app.route("/mostly_liked_sentences", methods=['GET'])
 def Mostly_liked_sentences_api():
     room = int(request.args.get('room'))
-    return likeSystem.Mostly_liked_sentences(room)
+    conf_id = int(request.args.get('conf_id'))
+    mostly_liked_sentences = likeSystem.Mostly_liked_sentences(room)
+    return jsonify({'sentences': mostly_liked_sentences}), 400
 
 @app.route("/startConf", methods=['POST'])
 def startConf():
@@ -125,6 +138,9 @@ def updateWordCloud():
 
     values = request.form
 
+    #path = "/var/www/html/multilingOEG22/static/exposed"
+    path = "./static/exposed"
+
     # Bytes to string
     #mem = ''.join(map(chr, mem))
     # String to json
@@ -135,7 +151,7 @@ def updateWordCloud():
     for k,v in values.items():
         decoded = base64.b64decode(v)
         lang = LangConst.REVERSE_MATCHER[k]
-        image_result = open(f'/var/www/html/multilingOEG22/static/exposed/WordCloud_{lang}.png', 'wb')
+        image_result = open(f'{path}/word_cloud.{lang}.png', 'wb')
         image_result.write(decoded)
 
     #if os.path.exists(name):
@@ -157,25 +173,9 @@ def updateWordCloud():
     return render_template('index.html')
 
 
+def getSentence_Like_Room_Lang(room, lang):
+    return getSentence_Like_Room(room)[lang]
 
-
-def connection():
-    try:
-        connect = mariadb.connect(
-            user = "oegadm",
-            password = "oegP@ss22LS2N",
-            host= "172.26.70.167",
-            port:3306,
-            database= "laboeg"
-        )
-    except mariadb.Error as e:
-        print(f"Error while connecting to MariaDB Server:"{e})
-        sys.exit(1)
-    
-    # Get the cursor 
-    cur = conn.cursor()
-
-    return cur
 
 
 
@@ -201,12 +201,13 @@ def SentenceInsertion():
     fr_sentence = values['sentences'][LangConst.TRAD_FRENCH]
     esp_sentence = values['sentences'][LangConst.TRAD_SPANISH]
     ara_sentence = values['sentences'][LangConst.TRAD_ARAB]
+
     return jsonify({'status_code': '200'})
 
     # Database insertion
     connection = connection()
 
-    # Conference 
+    # Conference
     conf_id = conf_id
     conferenceTitle = conf_name
     conference_date = datetime.now()
@@ -217,7 +218,7 @@ def SentenceInsertion():
     french = fr_sentence
     spanish = esp_sentence
     arabic = ara_sentence
-    #score = 
+    #score =
     conf_id = conf_id
     temps = datetime.now()
 
