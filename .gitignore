@@ -7,4 +7,5 @@ mykey.txt
 *.wav
 */credentials/*.json
 *.wsgi
+*word_cloud*.png
 *.log
