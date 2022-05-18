@@ -18,10 +18,10 @@ def connection():
 def connection():
     try:
         connect = mariadb.connect(
-            user = "mysql",
+            user = "root",
             password = "oegP@ss22LS2N",
             #host= "172.26.70.167",
-            host= "localhost",
+            host= "172.26.70.167",
             port=3306,
             database= "oeglab"
         )
