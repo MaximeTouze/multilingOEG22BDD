@@ -160,6 +160,7 @@ def UnlikeSentence(request):
         like =  curr.execute(
             "SELECT spanish_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
         )
+        print (like)
         if like == 0:
             like = 0
             print('ERROR ======= MORE UNLIKE THAN LIKE :: sent = ', num_sentence, '  ;;  lang = ', lang)
