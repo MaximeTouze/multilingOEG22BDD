@@ -66,7 +66,7 @@ def LikeSentence(request):
             "UPDATE Likes SET spanish_score = like WHERE sentence_id = num_sentence"
         )
 
-    connection.commit()
+    #connection.commit()
 
     connection.close()
 
@@ -125,7 +125,7 @@ def UnlikeSentence(request):
             "UPDATE Likes SET spanish_score = like WHERE sentence_id = num_sentence"
         )
     
-    connection.commit()
+    #connection.commit()
 
     connection.close()
     return lang, num_sentence

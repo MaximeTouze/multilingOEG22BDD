@@ -183,7 +183,7 @@ def getSentence_Like_Room_Lang(room, lang):
 
 
 
-@app.route("/insertion", methods=['PUT'])
+@app.route("/insertion", methods=['POST'])
 def SentenceInsertion():
     values = request.data
     # Bytes to string
@@ -212,7 +212,7 @@ def SentenceInsertion():
     # Conference
     conf_id = conf_id
     conferenceTitle = conf_name
-    conference_date = datetime.now()
+    conference_date = "now()"
     langue = conf_lang
 
     # Sentence
@@ -222,12 +222,14 @@ def SentenceInsertion():
     arabic = ara_sentence
     #score =
     conf_id = conf_id
-    temps = datetime.now()
+    temps = "now()"
 
     connection.execute(
         "INSERT INTO Sentence(english, french, spanish, arabic, conf_id, temps) VALUES(?, ?, ?, ?, ?, ?)",
         (english, french, spanish, arabic, conf_id, temps)
     )
+
+    
 
     connection.execute(
         "INSERT INTO Conference(id, conferenceTitle, conference_date, langue) VALUES(?, ?, ?, ?)",
