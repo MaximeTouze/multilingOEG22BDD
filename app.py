@@ -66,8 +66,17 @@ def sentences():
     room = int(request.args.get('room'))
     lang = request.args.get('lang')
 
-    sentences = CacheDataManager.getDisplayed_sentences_room_language_from(room, lang, num_sentence)
-    return jsonify({'sentences': sentences})
+    #sentences = CacheDataManager.getDisplayed_sentences_room_language_from(room, lang, num_sentence)
+    # Get from the database
+    connection = connection()
+    sent = connection.execute(
+        "SELECT (english, french, spanish, arabic) FROM Sentence WHERE id=num_sentence"
+    )
+
+    connection.close()
+    #return jsonify({'sentences': sentences})
+    return jsonify({'sentences': sent})
+
 
 
 
@@ -75,12 +84,96 @@ def sentences():
 
 @app.route("/likeSentence", methods=['POST'])
 def LikeSentence():
-    likeSystem.LikeSentence(request)
+    lang, num_sentence = likeSystem.LikeSentence(request)
+    
+    connection = connection()
+    if lang == 'ara':
+        like = connection.exectute(
+            "SELECT arabic_like WHERE sentence_id=num_sentence"
+        )
+        like += 1
+        connection.execute(
+            "UPDATE Likes SET arabic_score = like WHERE sentence_id = num_sentence"
+        )
+    if lang == 'eng':
+        like = connection.exectute(
+            "SELECT english_lie WHERE sentence_id=num_sentence"
+        )
+        like += 1
+        connection.execute(
+            "UPDATE Likes SET english_score = like WHERE sentence_id = num_sentence"
+        )
+    if lang == 'fr':
+        like = connection.exectute(
+            "SELECT french_like WHERE sentence_id=num_sentence"
+        )
+        like += 1
+        connection.execute(
+            "UPDATE Likes SET french_score = like WHERE sentence_id = num_sentence"
+        )
+    if lang == 'esp':
+        like =  connection.exectute(
+            "SELECT spanish_like WHERE sentence_id=num_sentence"
+        )
+        like += 1
+        connection.execute(
+            "UPDATE Likes SET spanish_score = like WHERE sentence_id = num_sentence"
+        )
+    
+    connection.close()
+    
     return render_template('view.html')
 
 @app.route("/UnlikeSentence", methods=['POST'])
 def UnlikeSentence():
-    likeSystem.UnlikeSentence(request)
+    lang, num_sentence = likeSystem.UnlikeSentence(request)
+    connection = connection()
+    if lang == 'ara':
+        like = connection.exectute(
+            "SELECT arabic_like WHERE sentence_id=num_sentence"
+        )
+        if like == 0:
+            like = 0
+        else:
+            like -= 1
+        connection.execute(
+            "UPDATE Likes SET arabic_score = like WHERE sentence_id = num_sentence"
+        )
+    if lang == 'eng':
+        like = connection.exectute(
+            "SELECT english_lie WHERE sentence_id=num_sentence"
+        )
+        if like == 0:
+            like = 0
+        else:
+            like -= 1
+        connection.execute(
+            "UPDATE Likes SET english_score = like WHERE sentence_id = num_sentence"
+        )
+    if lang == 'fr':
+        like = connection.exectute(
+            "SELECT french_like WHERE sentence_id=num_sentence"
+        )
+        if like == 0:
+            like = 0
+        else:
+            like -= 1
+        connection.execute(
+            "UPDATE Likes SET french_score = like WHERE sentence_id = num_sentence"
+        )
+    if lang == 'esp':
+        like =  connection.exectute(
+            "SELECT spanish_like WHERE sentence_id=num_sentence"
+        )
+        if like == 0:
+            like = 0
+        else:
+            like -= 1
+        connection.execute(
+            "UPDATE Likes SET spanish_score = like WHERE sentence_id = num_sentence"
+        )
+    
+    connection.close()
     return render_template('view.html')
 
 ################################
@@ -158,7 +251,7 @@ def updateWordCloud():
 
 
 
-
+"""
 def connection():
     try:
         connect = mariadb.connect(
@@ -168,14 +261,49 @@ def connection():
             port:3306,
             database= "laboeg"
         )
+    except mariadb.Errodef getSentence_Like_Room(room):
+    return sentence_like[room]
+"""
+def connection():
+    try:
+        connect = mariadb.connect(
+            user = "root",
+            password = "oegP@ss22LS2N",
+            host= "172.26.70.167",
+            port:3306,
+            database= "oeglab"
+        )
     except mariadb.Error as e:
         print(f"Error while connecting to MariaDB Server:"{e})
         sys.exit(1)
-    
+
     # Get the cursor 
     cur = conn.cursor()
 
     return cur
+
+
+def getSentence_Like_Room_Lang(room, lang):
+    return getSentence_Like_Room(room)[lang]
+
+def LikeSentence(request):
+    num_sentence = int(request.form.get('nb_sentence'))
+    lang = request.form.get('lang')
+    room = request.form.get('room')
+    try:
+        getSentence_Like_Room_Lang(room, lang)[num_sentence]+=1
+    except KeyError:
+        getSentence_Like_Room_Lang(room, lang)[num_sentence]=1
+
+def UnlikeSentence(request):
+    num_sentence = int(request.form.get('nb_sentence'))
+    lang = request.form.get('lang')
+    room = request.form.get('room')
+    getSentence_Like_Room_Lang(room, lang)[num_sentence]-=1r as e:
+        print(f"Error while connecting to MariaDB Server:"{e})
+        sys.exit(1)
+    
+    
 
 
 

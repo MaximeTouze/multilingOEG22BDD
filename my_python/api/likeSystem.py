@@ -26,12 +26,17 @@ def LikeSentence(request):
         getSentence_Like_Room_Lang(room, lang)[num_sentence]+=1
     except KeyError:
         getSentence_Like_Room_Lang(room, lang)[num_sentence]=1
+    
+    # return the language and the id in order to retrieve the sentence
+    return lang, num_sentence
 
 def UnlikeSentence(request):
     num_sentence = int(request.form.get('nb_sentence'))
     lang = request.form.get('lang')
     room = request.form.get('room')
     getSentence_Like_Room_Lang(room, lang)[num_sentence]-=1
+
+    return lang, num_sentence
 
 
 # returns the most liked sentence for each language
