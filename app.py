@@ -140,8 +140,8 @@ def updateWordCloud():
 
     values = request.form
 
-    #path = "/var/www/html/multilingOEG22/static/exposed" #hosted
-    path = "./static/exposed" #local
+    path = "/var/www/html/multilingOEG22/static/exposed" #hosted
+    #path = "./static/exposed" #local
 
     # Bytes to string
     #mem = ''.join(map(chr, mem))
@@ -236,7 +236,7 @@ def SentenceInsertion():
         connection.commit()
     except mariadb.Error as e:
         print(f"Error: {e}")
-    
+
     try:
         connection.execute(
             "INSERT INTO Conference(id, conferenceTitle, langue) VALUES(?, ?, ?)",
@@ -245,7 +245,7 @@ def SentenceInsertion():
         connection.commit()
     except mariadb.Error as e:
         print(f"Erroeurrrrrr: {e}")
-        
+
 
     # Close the database connection
     connection.close()
