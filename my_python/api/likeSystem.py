@@ -47,7 +47,14 @@ def LikeSentence(request):
         like = curr.execute(
             "SELECT english_like FROM Likes WHERE sentence_id=?", (num_sentence,)
         )
-        like += 1
+
+        try:
+            like += 1
+        except TypeError as e:
+            curr.execute(
+                "INSERT INTO Likes(0, 0, 0, 0, sentence_id) VALUES(0, 0, 0, 0, ?)",
+                (num_sentence,)
+            )
         curr.execute(
             "UPDATE Likes SET english_score = like WHERE sentence_id = num_sentence"
         )
