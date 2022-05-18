@@ -228,21 +228,25 @@ def SentenceInsertion():
 
     conf_id = conf_id
     #temps = now.strftime('%Y-%m-%d %H:%M:%S')
-
+    print('je vais jusque là')
     try:
+        print('je vais jusque là2')
         connection.execute(
             "INSERT INTO Sentence(english, french, spanish, arabic, conf_id) VALUES(?, ?, ?, ?, ?)",
             (english, french, spanish, arabic, conf_id)
         )
+        print('je vais jusque là3')
         connection.commit()
     except mariadb.Error as e:
         print(f"Error: {e}")
-
+    print('je vais jusque là4')
     try:
+        print('je vais jusque là5')
         connection.execute(
             "INSERT INTO Conference(id, conferenceTitle, langue) VALUES(?, ?, ?)",
             (conf_id, conferenceTitle, langue)
         )
+        print('je vais jusque là6')
         connection.commit()
     except mariadb.Error as e:
         print(f"Erroeurrrrrr: {e}")
