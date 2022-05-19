@@ -15,18 +15,20 @@ function updateSentence () {
     {
       const elt = document.getElementById('displayPanel');
       const sentences_ = response.sentences;
+      const keys = Object.keys(sentences_);
 
-      for (var i = 0; i < response.sentences.length; i++) {
-        sentence_rank = sentences.length + i;
+      for (var i = 0; i < keys.length; i++) {
+        sentence_rank = key[i];
         if (!document.getElementById(getSentenceId(sentence_rank))) {
           current_nb_sentence ++;
-          elt.innerHTML += GenerateSentence(sentences_[i],  sentence_rank, getSentenceImgId(sentence_rank, true));
+          elt.innerHTML += GenerateSentence(sentences_[sentence_rank],  sentence_rank, getSentenceImgId(sentence_rank, true));
           if (current_nb_sentence > MAX_SENTENCES) {
             removeExtraSentence(sentence_rank);
           }
         }
+        sentences = sentences.concat(sentences_[sentence_rank]);
       }
-      sentences = sentences.concat(sentences_);
+
     }
  });
 }

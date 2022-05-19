@@ -74,22 +74,26 @@ def sentences():
     room = int(request.args.get('room'))
     lang = request.args.get('lang')
 
-    #sentences = CacheDataManager.getDisplayed_sentences_room_language_from(room, lang, num_sentence)
+    #sentences = CacheDataManager.getDisplayed_sentences_room_language_from(room, lang, num_sentence
     # Get from the database
     (curr, connect) = connection()
-    sent = curr.execute(
-        #"SELECT (english, french, spanish, arabic) FROM Sentence WHERE id=num_sentence"
-        
 
-        # SELECT THE SENTENCES BEFORE A GIVEN ID
-        "SELECT (english, french, spanish, arabic conf_id) FROM Sentence WHERE id_phrase > num_sentence"
-    )
-    last_3_Sentences = curr.execute(
+    curr.execute(
         # SELECT THE LAST 3 SENTENCES
-        "SELECT * FROM Table ORDER BY ID DESC LIMIT 3"
+        "SELECT (id, english, french, spanish, arabic conf_id) FROM Table ORDER BY ID DESC LIMIT 3"
     )
 
-    connect.commit()
+    sent = {}
+    for (id, english, french, spanish, arabic) in curr:
+      if(lang == LangConst.ARAB):
+        sent[id] = arabic
+      elif (lang == LangConst.ENGLISH):
+        sent[id] = english
+      elif (lang == LangConst.FRENCH):
+        sent[id] = french
+      elif (lang == LangConst.SPANISH):
+        sent[id] = spanish
+
 
     connect.close()
     #return jsonify({'sentences': sentences})
