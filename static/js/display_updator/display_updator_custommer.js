@@ -8,6 +8,7 @@ function clearDisplay() {
 }
 
 function updateSentence () {
+  updateUngoing = true
   $.ajax({
     type:'GET',
     url:'/sentences',
@@ -33,8 +34,8 @@ function updateSentence () {
         }
         sentences = sentences.concat(sentences_[sentence_rank]);
       }
-
     }
+    updateUngoing = false;
  });
 }
 

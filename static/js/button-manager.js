@@ -13,11 +13,13 @@ const ChangeSelectedButtonFunction = function (old, new_) {
 */
 
 const LanguagesButtonsFunction = function (language) {
-  ChangeSelectedButtonFunction(selected_language, language);
+  if (!updateUngoing) {
+    ChangeSelectedButtonFunction(selected_language, language);
 
-  selected_language = language;
-  clearDisplay();
-  display_update();
+    selected_language = language;
+    clearDisplay();
+    display_update();
+  }
 }
 
 /**
@@ -25,11 +27,13 @@ const LanguagesButtonsFunction = function (language) {
 */
 
 const DisplaysButtonsFunction = function (display) {
-  ChangeSelectedButtonFunction(selected_display, display);
+  if (!updateUngoing) {
+    ChangeSelectedButtonFunction(selected_display, display);
 
-  selected_display = display;
-  clearDisplay();
-  display_update();
+    selected_display = display;
+    clearDisplay();
+    display_update();
+  }
 }
 
 const LikeSentence = function (sentence_num) {
