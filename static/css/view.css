@@ -1,4 +1,38 @@
 
+.sentence {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  max-width: 80%;
+  background-color: #dff7ff;
+  border-radius: 15px;
+  justify-content: center;
+  max-height: 500px;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.sentence:hover {
+  background-color: #cceaf4;
+}
+
+.heart {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.heart::before {
+  content: '\2665';
+  color: lightblue;
+}
+.heart.liked::before {
+  content: '\2665';
+  color: #188aff;
+}
+
 @media (min-device-width: 481px){
   #grid-column-languages-selection {
     display: grid;
@@ -26,7 +60,7 @@
 @media (max-device-width: 480px){
 
   .grid-container{
-    font-size: 1em;
+    font-size: 1.4em;
   }
 
   #grid-column-languages-selection {
