@@ -23,7 +23,7 @@ async function loadSentences () {
   }*/
 
   clearDisplay();
-  updateSentence ();
+  updateSentence (true);
 }
 
 function wordCloud_update() {

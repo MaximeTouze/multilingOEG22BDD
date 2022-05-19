@@ -7,7 +7,7 @@ function clearDisplay() {
   elt.innerHTML = "";
 }
 
-function updateSentence () {
+function updateSentence (comeFromLoad = false) {
   $.ajax({
     type:'GET',
     url:'/sentences',
@@ -18,6 +18,9 @@ function updateSentence () {
     },
     success:function(response)
     {
+      if(comeFromLoad) {
+        clearDisplay();
+      }
       const elt = document.getElementById('displayPanel');
       const sentences_ = response.sentences;
       const keys = Object.keys(sentences_);
