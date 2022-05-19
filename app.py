@@ -273,7 +273,7 @@ def SentenceInsertion():
 
 @app.route("/confTitle", methods=['GET'])
 def GetConfTitle():
-    res = ""
+    res = "SELECT conferenceTitle from Conference where id = ?", (id,)
     return jsonify({'title': res})
 
 
