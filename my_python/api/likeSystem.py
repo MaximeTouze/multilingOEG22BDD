@@ -48,7 +48,7 @@ def LikeSentence(request):
         try:
             like = like + 1
             curr.execute(
-                "UPDATE Likes SET arabic_like=like WHERE id=?", (like, id)
+                "UPDATE Likes SET arabic_like=? WHERE id=?", (like, id)
             )
         except TypeError as e:
             curr.execute(
