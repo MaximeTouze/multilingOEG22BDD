@@ -11,6 +11,7 @@
   max-height: 500px;
   padding: 20px;
   cursor: pointer;
+  margin: 15px;
 }
 
 .sentence:hover {
