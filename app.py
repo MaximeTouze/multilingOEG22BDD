@@ -50,8 +50,8 @@ def view():
     return render_template('blank_page.html')
     #return render_template('view.html')
 
-@app.route('/view_tes')
-def view():
+@app.route('/view_test')
+def view_test():
     #return render_template('blank_page.html')
     return render_template('view.html')
 
