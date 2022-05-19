@@ -70,10 +70,10 @@ async function display_update () {
 // remove the sentence if there are more than the MAX_SENTENCES limit
 function removeExtraSentence(last_sentence_index) {
   // We count from 1, but ranks are from 0
-  removeElement(
-    document.getElementById(
-      getSentenceId(last_sentence_index - MAX_SENTENCES)
-    )
-  );
+  sentences = document.getElementsByClassName('sentence');
+  while (sentences.length>  MAX_SENTENCES) {
+    removeElement(sentences[0]);
+    sentences = document.getElementsByClassName('sentence');
+  }
   current_nb_sentence --;
 }
