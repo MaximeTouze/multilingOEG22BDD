@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+
+    <title>View</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='exposed/favicon.png') }}">
+
+
+    <!-- Stylesheets -->
+
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/common.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/view.css') }}">
+  </head>
+
+
+  <body>
+    <div class="grid-container">
+      <div id="grid-column-languages-selection">
+        <div id="eng-button" class="cell selected_color_cell"
+          onclick="LanguagesButtonsFunction(ENGLISH)">
+          english
+        </div>
+
+        <div id="fr-button" class="basic_color_cell"
+          onclick="LanguagesButtonsFunction(FRENCH)">
+          français
+        </div>
+
+        <div id="esp-button" class="basic_color_cell"
+          onclick="LanguagesButtonsFunction(SPANISH)">
+          español
+        </div>
+
+        <div id="ara-button" class="basic_color_cell"
+          onclick="LanguagesButtonsFunction(ARABIAN)">
+          العربية
+        </div>
+
+        <div class="basic_color_cell" id="logo"></div>
+      </div>
+      <div id="grid-column-display">
+        <div id="displayPanel" class="basic_color_cell view-display">
+        </div>
+
+        <div id="grid-column-display-selection">
+          <div id="word_cloud-button" class="selected_color_cell"
+            onclick="DisplaysButtonsFunction(WORD_CLOUD)">
+            word cloud
+            <br/> nuage de mots
+            <br/> nube de palabras
+            <br/> سحابة الكلمات
+          </div>
+
+          <div id="sentences-button" class="basic_color_cell"
+            onclick="DisplaysButtonsFunction(SENTENCES)">
+            sentences
+            <br/> phrases
+            <br/> oraciones
+            <br/> جمل
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <footer>
+    <!-- Scripts (ordre important) -->
+  	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <script type="text/javascript" src="{{ url_for('static',filename='js/init.js') }}"></script>
+
+
+    <script type="text/javascript" src="{{ url_for('static',filename='js/display_generators.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/display_updator/display_updator_values.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/display_updator/display_updator_custommer.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/display_updator/display_updator_common.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/tools/display_tools.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/button-manager.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/auto_script.js') }}"></script>
+    <script type="text/javascript">
+      Updator();
+    </script>
+  </footer>
+</html>

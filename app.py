@@ -50,6 +50,10 @@ def view():
     #return render_template('blank_page.html')
     return render_template('view.html')
 
+@app.route('/view_auto')
+def view_auto():
+    return render_template('view_auto.html')
+
 @app.route('/view_test')
 def view_test():
     #return render_template('blank_page.html')
