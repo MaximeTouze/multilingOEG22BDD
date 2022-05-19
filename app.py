@@ -120,8 +120,6 @@ def UnlikeSentence():
 
 @app.route("/mostly_liked_sentences", methods=['GET'])
 def Mostly_liked_sentences_api():
-    room = int(request.args.get('room'))
-    conf_id = request.args.get('conf_id')
     mostly_liked_sentences = likeSystem.Mostly_liked_sentences(room)
     return jsonify({'sentences': mostly_liked_sentences}), 400
 
