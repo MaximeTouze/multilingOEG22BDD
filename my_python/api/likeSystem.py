@@ -1,6 +1,8 @@
 from flask import jsonify
 from my_python.const.lang_const import *
 from my_python.DB_connect import connection
+
+import my_python.const.lang_const as LangConst
 import mariadb
 
 # sentence_like = {ENGLISH:{0:5, 5:2}, FRENCH:{1:5, 5:2}, ESPAGNOL:{3:5, 5:2}, ARAB:{4:5, 5:2}}
