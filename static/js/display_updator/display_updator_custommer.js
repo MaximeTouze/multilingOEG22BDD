@@ -18,7 +18,6 @@ function updateSentence () {
     },
     success:function(response)
     {
-      clearDisplay();
       const elt = document.getElementById('displayPanel');
       const sentences_ = response.sentences;
       const keys = Object.keys(sentences_);
@@ -32,7 +31,7 @@ function updateSentence () {
             removeExtraSentence(sentence_rank);
           }
         }
-        sentences = sentences.concat(sentences_[sentence_rank]);
+        //sentences = sentences.concat(sentences_[sentence_rank]);
       }
     }
  });

@@ -21,6 +21,8 @@ async function loadSentences () {
       }
     }
   }*/
+
+  clearDisplay();
   updateSentence ();
 }
 

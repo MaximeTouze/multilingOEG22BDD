@@ -33,7 +33,7 @@ const GenerateSentence = function (sentence, nb_sentence, pict_id=null, has_pict
   const onclickFunction = 'LikeSentence(' + nb_sentence + ');';
   let res = '<div class="sentence" id="' + getSentenceId(nb_sentence) + '" onclick='+onclickFunction+'>';
   res += '<p>'+ sentence + '<\p>';
-  
+
   if(!nb_likes){
     nb_likes= "";
   }
@@ -41,6 +41,6 @@ const GenerateSentence = function (sentence, nb_sentence, pict_id=null, has_pict
     res += '<div id=like_' + nb_sentence + ' class="heart" style="">'+nb_likes+'</div>';
   }
   res += '</div>';
-  console.log(res);
+  //console.log(res);
   return res;
 }
