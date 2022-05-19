@@ -9,17 +9,22 @@ CONFRENCE_ON = 1
 CONFRENCE_QUESTIONS = 0
 CONFRENCE_OFF = -1
 
+current_conf_id = ""
+
 # Globals
 confrence_status = {}
 confrence_lang = {}
 
+def getCurrentConfID() :
+    return current_conf_id
 
 def getConfStaus(room):
     return confrence_status[room]
 
-def startConf(room, lang):
+def startConf(room, lang, conf_id):
     confrence_status[room] = CONFRENCE_ON
     confrence_lang[room] = lang
+    current_conf_id = conf_id
     initLikeSystem(room)
     initDisplayed_sentences_room(room)
     return
@@ -29,6 +34,7 @@ def setConf_questions_state(room):
     return
 
 def endConf(room):
+    current_conf_id = ''
     confrence_status[room] = CONFRENCE_OFF
     confrence_lang[room] = ''
     resetCache_room(room)
