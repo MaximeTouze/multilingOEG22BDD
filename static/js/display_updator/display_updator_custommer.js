@@ -8,7 +8,6 @@ function clearDisplay() {
 }
 
 function updateSentence () {
-  updateUngoing = true
   $.ajax({
     type:'GET',
     url:'/sentences',
@@ -19,6 +18,7 @@ function updateSentence () {
     },
     success:function(response)
     {
+      clearDisplay();
       const elt = document.getElementById('displayPanel');
       const sentences_ = response.sentences;
       const keys = Object.keys(sentences_);
@@ -35,7 +35,6 @@ function updateSentence () {
         sentences = sentences.concat(sentences_[sentence_rank]);
       }
     }
-    updateUngoing = false;
  });
 }
 
