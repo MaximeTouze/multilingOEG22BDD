@@ -74,7 +74,7 @@ def LikeSentence(request):
         like = curr.execute(
             "SELECT french_like FROM Likes WHERE sentence_id=?", (num_sentence,)
         )
-        connect.commit()
+
         try:
             like = like +1
             curr.execute(
@@ -98,7 +98,9 @@ def LikeSentence(request):
             id = id_
             print("like", like)
         try:
+            print ('in try')
             like = like +1
+            print ('beetween')
             curr.execute(
                 "UPDATE Likes SET spanish_score = like WHERE id=?", (id,)
             )
@@ -107,6 +109,8 @@ def LikeSentence(request):
                 "INSERT INTO Likes(arabic_like , english_like , french_like , spanish_like , sentence_id) VALUES(?, ?, ?, ?, ?)",
                 (0, 0, 0, 1, num_sentence)
             )
+    connect.commit()
+    connect.close()
 
 
 
