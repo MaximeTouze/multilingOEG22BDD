@@ -133,9 +133,14 @@ def UnlikeSentence(request):
     #DB
     (curr, connect) = connection()
     if lang == 'ara':
-        like = curr.execute(
-            "SELECT arabic_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
+        curr.execute(
+            "SELECT id, arabic_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
         )
+        like = None
+        id = None
+        for (id_, lik) in curr:
+            like = lik
+            id = id_
         print ("like", like)
         if like == 0:
             like = 0
@@ -144,8 +149,11 @@ def UnlikeSentence(request):
             like -= 1
             ###
         curr.execute(
-            "UPDATE Likes SET arabic_score = like WHERE sentence_id = ?", (num_sentence,)
+            "UPDATE Likes SET arabic_score=? WHERE id = ?", (like, id)
         )
+
+
+
     if lang == 'eng':
         like = curr.execute(
             "SELECT english_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
@@ -159,6 +167,10 @@ def UnlikeSentence(request):
         curr.execute(
             "UPDATE Likes SET english_score = like WHERE sentence_id = ?", (num_sentence,)
         )
+
+
+
+
     if lang == 'fr':
         like = curr.execute(
             "SELECT french_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
@@ -172,10 +184,18 @@ def UnlikeSentence(request):
         curr.execute(
             "UPDATE Likes SET french_score = like WHERE sentence_id =  ?", (num_sentence,)
         )
+
+
+
     if lang == 'esp':
         like =  curr.execute(
-            "SELECT spanish_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
+            "SELECT id, spanish_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
         )
+        like = None
+        id = None
+        for (id_, lik) in curr:
+            like = lik
+            id = id_
         print ("like", like)
         if like == 0:
             like = 0
@@ -183,7 +203,7 @@ def UnlikeSentence(request):
         else:
             like -= 1
         connect.execute(
-            "UPDATE Likes SET spanish_score = like WHERE sentence_id =  ?", (num_sentence,)
+            "UPDATE Likes SET spanish_like=? WHERE id=?", (like, id)
         )
 
     connect.commit()
