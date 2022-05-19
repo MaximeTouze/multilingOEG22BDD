@@ -38,7 +38,7 @@ def LikeSentence(request):
     if lang == 'ara':
 
         like = curr.execute(
-            "SELECT arabic_like FROM Likes WHERE sentence_id=?", (num_sentence,)
+            "SELECT id, arabic_like FROM Likes WHERE sentence_id=?", (num_sentence,)
         )
         like = None
         id = None
