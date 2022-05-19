@@ -20,7 +20,7 @@ function sleep(ms) {
 
 // remove the DOM element
 function removeElement (elem) {
-  if (elem) {
+  if (elem != null) {
     elem.parentNode.removeChild(elem);
   }
 }
