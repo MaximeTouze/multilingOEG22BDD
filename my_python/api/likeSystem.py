@@ -102,7 +102,7 @@ def LikeSentence(request):
             like = like +1
             print ('beetween')
             curr.execute(
-                "UPDATE Likes SET spanish_score=? WHERE id=?", (like, id)
+                "UPDATE Likes SET spanish_like=? WHERE id=?", (like, id)
             )
         except TypeError as e:
             curr.execute(
