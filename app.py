@@ -96,6 +96,7 @@ def sentences():
 
 
     connect.close()
+    print(sent)
     #return jsonify({'sentences': sentences})
     return jsonify({'sentences': sent})
 
