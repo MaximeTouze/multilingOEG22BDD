@@ -188,7 +188,7 @@ def UnlikeSentence(request):
 
 
     if lang == 'esp':
-        like =  curr.execute(
+        curr.execute(
             "SELECT id, spanish_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
         )
         like = None
@@ -202,7 +202,7 @@ def UnlikeSentence(request):
             print('ERROR ======= MORE UNLIKE THAN LIKE :: sent = ', num_sentence, '  ;;  lang = ', lang)
         else:
             like -= 1
-        connect.execute(
+        curr.execute(
             "UPDATE Likes SET spanish_like=? WHERE id=?", (like, id)
         )
 
