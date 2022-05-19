@@ -40,11 +40,15 @@ def LikeSentence(request):
         like = curr.execute(
             "SELECT arabic_like FROM Likes WHERE sentence_id=?", (num_sentence,)
         )
-        connect.commit()
+        like = None
+        id = None
+        for (id_, lik) in curr:
+            like = lik
+            id = id_
         try:
             like = like + 1
             curr.execute(
-                "UPDATE Likes SET arabic_score = like WHERE sentence_id = ?", (num_sentence)
+                "UPDATE Likes SET arabic_like=like WHERE id=?", (like, id)
             )
         except TypeError as e:
             curr.execute(
@@ -55,13 +59,17 @@ def LikeSentence(request):
     if lang == 'eng':
 
         like = curr.execute(
-            "SELECT english_like FROM Likes WHERE sentence_id=?", (num_sentence)
+            "SELECT id, english_like FROM Likes WHERE sentence_id=?", (num_sentence,)
         )
-        connect.commit()
+        like = None
+        id = None
+        for (id_, lik) in curr:
+            like = lik
+            id = id_
         try:
             like = like +1
             curr.execute(
-                "UPDATE Likes SET english_score = like WHERE sentence_id=?", (num_sentence,)
+                "UPDATE Likes SET english_like=? WHERE id=?", (like, id)
             )
         except TypeError as e:
             curr.execute(
@@ -72,13 +80,17 @@ def LikeSentence(request):
 
     if lang == 'fr':
         like = curr.execute(
-            "SELECT french_like FROM Likes WHERE sentence_id=?", (num_sentence,)
+            "SELECT id, french_like FROM Likes WHERE sentence_id=?", (num_sentence,)
         )
-
+        like = None
+        id = None
+        for (id_, lik) in curr:
+            like = lik
+            id = id_
         try:
             like = like +1
             curr.execute(
-                "UPDATE Likes SET french_score = like WHERE sentence_id=?", (num_sentence,)
+                "UPDATE Likes SET french_like=? WHERE id=?", (like, id)
             )
         except TypeError as e:
             curr.execute(
@@ -90,17 +102,13 @@ def LikeSentence(request):
         curr.execute(
             "SELECT id, spanish_like FROM Likes WHERE sentence_id=?",(num_sentence,)
         )
-        print(curr)
         like = None
         id = None
         for (id_, lik) in curr:
             like = lik
             id = id_
-            print("like", like)
         try:
-            print ('in try')
             like = like +1
-            print ('beetween')
             curr.execute(
                 "UPDATE Likes SET spanish_like=? WHERE id=?", (like, id)
             )
