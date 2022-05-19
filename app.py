@@ -120,7 +120,7 @@ def UnlikeSentence():
 
 @app.route("/mostly_liked_sentences", methods=['GET'])
 def Mostly_liked_sentences_api():
-    mostly_liked_sentences = likeSystem.Mostly_liked_sentences(room)
+    mostly_liked_sentences = likeSystem.Mostly_liked_sentences(1)
     return jsonify({'sentences': mostly_liked_sentences}), 400
 
 @app.route("/startConf", methods=['POST'])
