@@ -47,6 +47,11 @@ def tutorial():
 
 @app.route('/view')
 def view():
+    return render_template('blank_page.html')
+    #return render_template('view.html')
+
+@app.route('/view_tes')
+def view():
     #return render_template('blank_page.html')
     return render_template('view.html')
 
