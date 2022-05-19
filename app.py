@@ -228,14 +228,7 @@ def SentenceInsertion():
 
     conf_id = conf_id
     #temps = now.strftime('%Y-%m-%d %H:%M:%S')
-    try:
-        curr.execute(
-            "INSERT INTO Sentence(english, french, spanish, arabic, conf_id) VALUES(?, ?, ?, ?, ?)",
-            (english, french, spanish, arabic, conf_id)
-        )
-        connect.commit()
-    except mariadb.Error as e:
-        print(f"Error: {e}")
+
     try:
         curr.execute(
             "INSERT INTO Conference(id, conferenceTitle, langue) VALUES(?, ?, ?)",
@@ -244,6 +237,16 @@ def SentenceInsertion():
         connect.commit()
     except mariadb.Error as e:
         print(f"Erroeurrrrrr: {e}")
+
+    try:
+        curr.execute(
+            "INSERT INTO Sentence(english, french, spanish, arabic, conf_id) VALUES(?, ?, ?, ?, ?)",
+            (english, french, spanish, arabic, conf_id)
+        )
+        connect.commit()
+    except mariadb.Error as e:
+        print(f"Error: {e}")
+
 
 
     # Close the database connection
