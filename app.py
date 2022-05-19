@@ -80,7 +80,7 @@ def sentences():
 
     curr.execute(
         # SELECT THE LAST 3 SENTENCES
-        "SELECT id, english, french, spanish, arabic FROM Sentence ORDER BY id DESC LIMIT 3"
+        "SELECT id, english, french, spanish, arabic FROM Sentence ORDER BY id DESC LIMIT 1"
     )
 
     sent = {}
@@ -129,7 +129,8 @@ def Mostly_liked_sentences_api():
 def startConf():
     room = int(request.form.get('room'))
     lang = request.form.get('lang')
-    ConfManager.startConf(room, lang)
+    conf_id = request.form.get('conf_id')
+    ConfManager.startConf(room, lang, conf_id)
     return render_template('index.html')
 
 @app.route("/stopConf", methods=['POST'])
@@ -273,8 +274,15 @@ def SentenceInsertion():
 
 @app.route("/confTitle", methods=['GET'])
 def GetConfTitle():
-    res = "SELECT conferenceTitle from Conference where id = ?", (id,)
-    return jsonify({'title': res})
+    conf_id = ConfManager.getCurrentConfID()
+    (curr, connect) = connection()
+    curr.execute(
+     "SELECT conferenceTitle from Conference where id = ?", (id,)
+    )
+    connect.close()
+    for confTitle in curr:
+        return jsonify({'title': confTitle})
+
 
 
 

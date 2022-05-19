@@ -16,6 +16,7 @@ const LanguagesButtonsFunction = function (language) {
   ChangeSelectedButtonFunction(selected_language, language);
 
   selected_language = language;
+  clearDisplay();
   display_update();
 }
 
@@ -27,6 +28,7 @@ const DisplaysButtonsFunction = function (display) {
   ChangeSelectedButtonFunction(selected_display, display);
 
   selected_display = display;
+  clearDisplay();
   display_update();
 }
 

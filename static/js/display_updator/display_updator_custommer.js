@@ -2,6 +2,11 @@
 room = 1
 //
 
+function clearDisplay() {
+  const elt = document.getElementById('displayPanel');
+  elt.innerHTML = "";
+}
+
 function updateSentence () {
   $.ajax({
     type:'GET',
