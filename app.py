@@ -91,7 +91,7 @@ def sentences():
         sent[id] = english
       elif (lang == LangConst.FRENCH):
         sent[id] = french
-      elif (lang == LangConst.SPANISH):
+      elif (lang == LangConst.ESPAGNOL):
         sent[id] = spanish
 
 
