@@ -9,7 +9,7 @@ async function Updator() {
 
 
 async function loadSentences () {
-  const elt = document.getElementById('displayPanel');
+  /*const elt = document.getElementById('displayPanel');
 
   for (var i = 0; i < sentences.length; i++) {
     sentence_rank = i;
@@ -20,7 +20,8 @@ async function loadSentences () {
         removeExtraSentence(sentence_rank);
       }
     }
-  }
+  }*/
+  updateSentence ();
 }
 
 function wordCloud_update() {
