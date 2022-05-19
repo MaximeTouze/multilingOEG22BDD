@@ -81,7 +81,9 @@
     <script type="text/javascript" src="{{ url_for('static',filename='js/display_updator/display_updator_common.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/tools/display_tools.js') }}"></script>
 
-
+    {% if auto == true %}
+      <script type="text/javascript" src="{{ url_for('static',filename='js/auto_script.js') }}"></script>
+    {% endif %}
 
     <script type="text/javascript" src="{{ url_for('static',filename='js/button-manager.js') }}"></script>
 

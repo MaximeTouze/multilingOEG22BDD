@@ -52,7 +52,7 @@ def view():
 
 @app.route('/view_auto')
 def view_auto():
-    return render_template('view_auto.html')
+    return render_template('view.html', auto=True)
 
 @app.route('/view_test')
 def view_test():
