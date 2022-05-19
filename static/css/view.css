@@ -109,6 +109,7 @@
 #displayPanel {
   cursor: default;
   background-color: white;
+  color: #188aff;
   display: flex;
   justify-content: center;
   align-items: center;
