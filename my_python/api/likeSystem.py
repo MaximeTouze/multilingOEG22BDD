@@ -236,24 +236,61 @@ def UnlikeSentence(request):
 #}
 def Mostly_liked_sentences(room):
     result = {}
-    for language in LANGUAGES:
-        sentence_key_memory = -1
-        sentence_like_memory = -1
-        for sentence_key in getSentence_Like_Room_Lang(room, language).keys():
-            if (getSentence_Like_Room_Lang(room, language)[sentence_key] > sentence_like_memory):
-                sentence_like_memory = sentence_like[language][sentence_key]
-                sentence_key_memory = sentence_key
+    #for language in LANGUAGES:
+    #    sentence_key_memory = -1
+    #    sentence_like_memory = -1
+    #    for sentence_key in getSentence_Like_Room_Lang(room, language).keys():
+    #        if (getSentence_Like_Room_Lang(room, language)[sentence_key] > sentence_like_memory):
+    #            sentence_like_memory = sentence_like[language][sentence_key]
+    #            sentence_key_memory = sentence_key
 
         # end for
-        if (sentence_key_memory != -1 and sentence_like_memory < 1):
-            result[language] = {"sentence": getSentence_Like_Room_Lang(room, language)[sentence_key_memory], "nb_likes": sentence_like_memory}
-        else:
-            result[language] = {"sentence": "", "nb_likes": sentence_like_memory}
+    #    if (sentence_key_memory != -1 and sentence_like_memory < 1):
+    #        result[language] = {"sentence": getSentence_Like_Room_Lang(room, language)[sentence_key_memory], "nb_likes": sentence_like_memory}
+    #    else:
+    #        result[language] = {"sentence": "", "nb_likes": sentence_like_memory}
+
+    (curr, connect) = connection()
+
+    result[LangConst.ARAB] = getArabMostlyLiked(curr)
+    result[LangConst.ESPAGNOL] = getEspMostlyLiked(curr)
+    result[LangConst.FRENCH] = getFrMostlyLiked(curr)
+    result[LangConst.ENGLISH] = getEngMostlyLiked(curr)
+
+    connect.close()
 
     result = {'liked_sentences': result}
     print("Mostly_liked_sentences", result)
     return jsonify(result)
 
+
+def getArabMostlyLiked(curr):
+    curr.execute(
+        "SELECT Sentence.arabic FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.arabic_like = (SELECT MAX(Likes.arabic_like) FROM Likes)"
+    )
+    for (sent) in curr:
+        return {"sentence": "", "nb_likes": 1}
+
+def getEngMostlyLiked(curr):
+    curr.execute(
+        "SELECT Sentence.english FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.english_like = (SELECT MAX(Likes.english_like) FROM Likes)"
+    )
+    for (sent) in curr:
+        return {"sentence": "", "nb_likes": 1}
+
+def getFrMostlyLiked(curr):
+    curr.execute(
+        "SELECT Sentence.french FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.french_like  = (SELECT MAX(Likes.french_like) FROM Likes)"
+    )
+    for (sent) in curr:
+        return {"sentence": "", "nb_likes": 1}
+
+def getEspMostlyLiked(curr):
+    curr.execute(
+        "SELECT Sentence.spanish FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.spanish_like = (SELECT MAX(Likes.spanish_like) FROM Likes)"
+    )
+    for (sent) in curr:
+        return {"sentence": "", "nb_likes": 1}
 
 # Place the tab rank value to the tab rank-1
 # WARN Does not change the given rank value, you have to do it

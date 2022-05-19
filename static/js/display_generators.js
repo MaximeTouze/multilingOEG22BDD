@@ -26,7 +26,7 @@ const GenerateSentence = function (sentence, nb_sentence, pict_id=null, has_pict
   if ( has_pict) {
     res += GenerateSentenceImg(nb_sentence, pict_id, has_pict);
   }
-  console.log(res);
+  //console.log(res);
   return res + ' <\div><div class="sentence-separator">' + SENTENCE_SEPARATOR + ' <\div>';
 
 }
@@ -47,7 +47,6 @@ const GenerateSentenceNbLikes = function (nb_sentence, nb_likes) {
 }
 
 const ChangeSentenceLikeButtonToUnlike = function (nb_sentence) {
-  console.warn(nb_sentence);
   const imgId = getImageId(nb_sentence);
   const pict_id = getSentenceImgId(nb_sentence);
   const onclickFunction = 'UnlikeSentence(' + nb_sentence + ');';
@@ -57,7 +56,6 @@ const ChangeSentenceLikeButtonToUnlike = function (nb_sentence) {
 
 
 const ChangeSentenceDislikeButtonToLike = function (nb_sentence) {
-  console.warn(nb_sentence);
   const imgId = getImageId(nb_sentence);
   const pict_id = getSentenceImgId(nb_sentence);
   const onclickFunction = 'LikeSentence(' + nb_sentence + ');';
