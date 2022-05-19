@@ -62,7 +62,7 @@ const LikeSentence = function (sentence_num) {
 }
 
 const UnlikeSentence = function (sentence_num) {
-  ChangeSentenceUnlikeButtonToLike(sentence_num);
+  ChangeSentenceDislikeButtonToLike(sentence_num);
   $.ajax({
     type:'POST',
     url:'/UnlikeSentence',

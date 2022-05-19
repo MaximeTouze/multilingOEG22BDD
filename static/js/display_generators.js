@@ -47,6 +47,7 @@ const GenerateSentenceNbLikes = function (nb_sentence, nb_likes) {
 }
 
 const ChangeSentenceLikeButtonToUnlike = function (nb_sentence) {
+  console.warn(nb_sentence);
   const imgId = getImageId(nb_sentence);
   const pict_id = getSentenceImgId(nb_sentence);
   const onclickFunction = 'UnlikeSentence(' + nb_sentence + ');';
@@ -54,7 +55,9 @@ const ChangeSentenceLikeButtonToUnlike = function (nb_sentence) {
   document.getElementById(pict_id).innerHTML = GenerateExposedImg('green_thumbs_up.' + IMG_TYPE , style=imgStyle, onclick=onclickFunction, imgId);
 }
 
+
 const ChangeSentenceDislikeButtonToLike = function (nb_sentence) {
+  console.warn(nb_sentence);
   const imgId = getImageId(nb_sentence);
   const pict_id = getSentenceImgId(nb_sentence);
   const onclickFunction = 'LikeSentence(' + nb_sentence + ');';
