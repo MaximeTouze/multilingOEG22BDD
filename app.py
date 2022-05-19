@@ -47,8 +47,8 @@ def tutorial():
 
 @app.route('/view')
 def view():
-    return render_template('blank_page.html')
-    #return render_template('view.html')
+    #return render_template('blank_page.html')
+    return render_template('view.html')
 
 
 ## The app's solution
