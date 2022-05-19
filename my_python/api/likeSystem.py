@@ -136,12 +136,13 @@ def UnlikeSentence(request):
         curr.execute(
             "SELECT id, arabic_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
         )
+
         like = None
         id = None
         for (id_, lik) in curr:
             like = lik
             id = id_
-        print ("like", like)
+
         if like == 0:
             like = 0
             print('ERROR ======= MORE UNLIKE THAN LIKE :: sent = ', num_sentence, '  ;;  lang = ', lang)
@@ -149,23 +150,29 @@ def UnlikeSentence(request):
             like -= 1
             ###
         curr.execute(
-            "UPDATE Likes SET arabic_score=? WHERE id = ?", (like, id)
+            "UPDATE Likes SET arabic_like=? WHERE id = ?", (like, id)
         )
 
 
 
     if lang == 'eng':
         like = curr.execute(
-            "SELECT english_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
+            "SELECT id, english_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
         )
-        print ("like", like)
+
+        like = None
+        id = None
+        for (id_, lik) in curr:
+            like = lik
+            id = id_
+
         if like == 0:
             like = 0
             print('ERROR ======= MORE UNLIKE THAN LIKE :: sent = ', num_sentence, '  ;;  lang = ', lang)
         else:
             like -= 1
         curr.execute(
-            "UPDATE Likes SET english_score = like WHERE sentence_id = ?", (num_sentence,)
+            "UPDATE Likes SET english_like=? WHERE id=?", (like, id)
         )
 
 
@@ -173,16 +180,22 @@ def UnlikeSentence(request):
 
     if lang == 'fr':
         like = curr.execute(
-            "SELECT french_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
+            "SELECT id, french_like FROM Likes WHERE sentence_id= ?", (num_sentence,)
         )
-        print ("like", like)
+
+        like = None
+        id = None
+        for (id_, lik) in curr:
+            like = lik
+            id = id_
+
         if like == 0:
             like = 0
             print('ERROR ======= MORE UNLIKE THAN LIKE :: sent = ', num_sentence, '  ;;  lang = ', lang)
         else:
             like -= 1
         curr.execute(
-            "UPDATE Likes SET french_score = like WHERE sentence_id =  ?", (num_sentence,)
+            "UPDATE Likes SET french_like=? WHERE id=?", (like, id)
         )
 
 
@@ -196,7 +209,6 @@ def UnlikeSentence(request):
         for (id_, lik) in curr:
             like = lik
             id = id_
-        print ("like", like)
         if like == 0:
             like = 0
             print('ERROR ======= MORE UNLIKE THAN LIKE :: sent = ', num_sentence, '  ;;  lang = ', lang)
