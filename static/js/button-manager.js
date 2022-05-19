@@ -69,7 +69,7 @@ const UnlikeSentence = function (sentence_num) {
    url:'/UnlikeSentence',
    data:{
      'nb_sentence':2,
-     'lang':"eng",
+     'lang':"ara",
      'room':1
    },
    success:function(response) {}
