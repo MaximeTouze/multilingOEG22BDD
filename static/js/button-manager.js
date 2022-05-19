@@ -31,16 +31,18 @@ const DisplaysButtonsFunction = function (display) {
 }
 
 const LikeSentence = function (sentence_num) {
-  //ChangeSentenceLikeButtonToUnlike(sentence_num);
-  /*$.ajax({
+  ChangeSentenceLikeButtonToUnlike(sentence_num);
+  $.ajax({
     type:'POST',
     url:'/likeSentence',
     data:{
       'nb_sentence':sentence_num,
-      'lang':selected_language
+      'lang':selected_language,
+      'room':1
     },
     success:function(response) {}
- });*/
+ });
+ /*
  $.ajax({
    type:'POST',
    url:'/likeSentence',
@@ -50,20 +52,22 @@ const LikeSentence = function (sentence_num) {
      'room':1
    },
    success:function(response) {}
- });
+ });*/
 }
 
 const UnlikeSentence = function (sentence_num) {
-  /*ChangeSentenceUnlikeButtonToLike(sentence_num);
+  ChangeSentenceUnlikeButtonToLike(sentence_num);
   $.ajax({
     type:'POST',
     url:'/UnlikeSentence',
     data:{
       'nb_sentence':sentence_num,
-      'lang':selected_language
+      'lang':selected_language,
+      'room':1
     },
     success:function(response) {}
- });*/
+ });
+ /*
  $.ajax({
    type:'POST',
    url:'/UnlikeSentence',
@@ -73,5 +77,5 @@ const UnlikeSentence = function (sentence_num) {
      'room':1
    },
    success:function(response) {}
- });
+ });*/
 }
