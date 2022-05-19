@@ -278,10 +278,10 @@ def GetConfTitle():
     (curr, connect) = connection()
     curr.execute(
      "SELECT conferenceTitle from Conference where id = ?", (id,)
-     )
-     connect.close()
-     for confTitle in curr:
-         return jsonify({'title': confTitle})
+    )
+    connect.close()
+    for confTitle in curr:
+        return jsonify({'title': confTitle})
 
 
 
