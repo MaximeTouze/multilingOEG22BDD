@@ -16,7 +16,7 @@ const LanguagesButtonsFunction = function (language) {
   ChangeSelectedButtonFunction(selected_language, language);
 
   selected_language = language;
-  clearText();
+  clearDisplay();
   display_update();
 }
 
