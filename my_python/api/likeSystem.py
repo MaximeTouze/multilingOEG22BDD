@@ -126,7 +126,6 @@ def UnlikeSentence(request):
     num_sentence = int(request.form.get('nb_sentence'))
     lang = request.form.get('lang')
     room = request.form.get('room')
-    print(num_sentence, lang, room)
     # cache
     #getSentence_Like_Room_Lang(room, lang)[num_sentence]-=1
 
