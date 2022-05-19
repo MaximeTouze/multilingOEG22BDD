@@ -45,8 +45,8 @@ const LikeSentence = function (sentence_num) {
    type:'POST',
    url:'/likeSentence',
    data:{
-     'nb_sentence':2,
-     'lang':"esp",
+     'nb_sentence':3,
+     'lang':"ara",
      'room':1
    },
    success:function(response) {}
