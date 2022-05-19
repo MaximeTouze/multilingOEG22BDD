@@ -15,9 +15,9 @@ div.basic_color_cell  {
   cursor: pointer;
   font-family:sans-serif;
   padding: 10px;
-  background: #1952b3;
-  border: 1px solid white;
-  color: white;
+  background: white;
+  border: 2px solid #188aff;
+  color: #188aff;
   opacity: 0.9;
   vertical-align: center;
   text-align: center;
@@ -29,8 +29,8 @@ div.selected_color_cell  {
   cursor: pointer;
   font-family:sans-serif;
   padding: 10px;
-  background: #0d59f2;
-  border: 1px solid white;
+  background: #188aff;
+  border: 2px solid #188aff;
   color: white;
   opacity: 0.9;
   vertical-align: center;
