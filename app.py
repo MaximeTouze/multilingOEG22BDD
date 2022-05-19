@@ -216,7 +216,6 @@ def SentenceInsertion():
 
     # Json to dictionnary
     values = json.loads(values)
-    print (values)
 
     conf_id = values['conf_id']
     conf_name = values['conf_name']
@@ -255,7 +254,7 @@ def SentenceInsertion():
         )
         connect.commit()
     except mariadb.Error as e:
-        print(f"Erroeurrrrrr: {e}")
+        print(f"DB Error: {e}")
 
     try:
         curr.execute(
@@ -264,7 +263,7 @@ def SentenceInsertion():
         )
         connect.commit()
     except mariadb.Error as e:
-        print(f"Error: {e}")
+        print(f"DB Error: {e}")
 
 
 

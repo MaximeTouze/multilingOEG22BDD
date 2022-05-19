@@ -252,11 +252,13 @@ def Mostly_liked_sentences(room):
 
     (curr, connect) = connection()
 
-    result[LangConst.ARAB] = getArabMostlyLiked(curr)
-    result[LangConst.ESPAGNOL] = getEspMostlyLiked(curr)
-    result[LangConst.FRENCH] = getFrMostlyLiked(curr)
-    result[LangConst.ENGLISH] = getEngMostlyLiked(curr)
-
+    try:
+        result[LangConst.ARAB] = getArabMostlyLiked(curr)
+        result[LangConst.ESPAGNOL] = getEspMostlyLiked(curr)
+        result[LangConst.FRENCH] = getFrMostlyLiked(curr)
+        result[LangConst.ENGLISH] = getEngMostlyLiked(curr)
+    except mariadb.Error as e:
+        print(f"Error: {e}")
     connect.close()
 
     result = {'liked_sentences': result}
