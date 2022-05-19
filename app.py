@@ -271,6 +271,10 @@ def SentenceInsertion():
     return jsonify({'status_code': '200'})
 
 
+@app.route("/confTitle", methods=['GET'])
+def GetConfTitle():
+    res = ""
+    return jsonify({'title': res})
 
 
 
