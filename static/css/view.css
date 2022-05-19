@@ -1,5 +1,5 @@
 
-@media (min-width: 641px) {
+@media (min-device-width: 481px){
   #grid-column-languages-selection {
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20% 20%;
@@ -23,15 +23,15 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-device-width: 480px){
 
   .grid-container{
-    font-size: 0.7em;
+    font-size: 1em;
   }
 
   #grid-column-languages-selection {
     display: grid;
-    grid-template-columns: repeat(3, 33.3333%);
+    grid-template-columns: repeat(3, 33.333%);
     width: 100%;
     height: 15%;
   }
@@ -64,7 +64,7 @@
     grid-row-end: 2;
   }
 
-  #settings-button{
+  #logo{
     grid-column-start: 3;
     grid-column-end: 3;
     grid-row-start: 1;
@@ -97,7 +97,18 @@
 .view-display {
 }
 
+#logo {
+  background-color: white;
+  cursor: default;
+  background-image: url("../exposed/Logo-chaire-Relia-Nantes U_horizontal_Couleur.jpg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 #displayPanel {
+  cursor: default;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
