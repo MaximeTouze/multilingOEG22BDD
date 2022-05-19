@@ -175,6 +175,7 @@ def updateWordCloud():
         lang = LangConst.REVERSE_MATCHER[k]
         image_result = open(f'{path}/word_cloud.{lang}.png', 'wb')
         image_result.write(decoded)
+        image_result.close()
 
     #if os.path.exists(name):
     #    os.remove(name)
