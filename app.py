@@ -80,7 +80,7 @@ def sentences():
 
     curr.execute(
         # SELECT THE LAST 3 SENTENCES
-        "SELECT (id, english, french, spanish, arabic conf_id) FROM Sentence ORDER BY id DESC LIMIT 3"
+        "SELECT id, english, french, spanish, arabic FROM Sentence ORDER BY id DESC LIMIT 3"
     )
 
     sent = {}
