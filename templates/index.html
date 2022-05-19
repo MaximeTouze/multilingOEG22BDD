@@ -6,12 +6,18 @@
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/common.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='exposed/favicon.png') }}">
   </head>
-  <body style="background:#2C2D3A; color: white; text-align:center ; font-family: sans-serif; vertical-align: middle;
-  font-size: 400%;"
-  onclick="location.href = '/tutorial'">
-  <br/>
-    Welcome on the 2022 multiling open education global conference interactive display
-    <br/><br/>
-     Click for tutorial
+  <body onclick="location.href = '/tutorial'">
+    <div class="main-title">
+      <h1>Open Education Global Conference Interactive Display</h1>
+      
+      <h2>انقر للحصول على شرح | Click for an explanation</h2>
+      <h2>Cliquez pour une explication | Haga clic para una explicación</h2>
+       
+    </div>
+    <div class="logos-footer">
+      <img src="{{ url_for('static',filename='exposed/Logo-chaire-Relia-Nantes U_horizontal_Couleur.jpg') }}"/>
+      <img src="{{ url_for('static',filename='exposed/Nantes-U.png') }}"/>
+      <img src="{{ url_for('static',filename='exposed/oeglobal.png') }}"/>
+    </div>
   </body>
 </html>

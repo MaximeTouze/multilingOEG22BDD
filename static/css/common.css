@@ -47,3 +47,40 @@ div.selected_color_cell  {
 .sentence-separator{
   color: white;
 }
+
+.main-title {
+  background-color: #188aff;
+  height: 61%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.main-title h1 {
+  color: white;
+  max-width: 1000px;
+  font-size: 2em;
+  width: 80%;
+  margin-bottom: 50px;
+}
+
+.main-title h2 {
+  color: white;
+  max-width: 1000px;
+  font-size: 1em;
+  width: 80%;
+  font-weight: 500;
+}
+
+.logos-footer {
+  background-color: white;
+  height: 39%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logos-footer img{
+  max-height: 200px;
+  max-width: 300px;
+}

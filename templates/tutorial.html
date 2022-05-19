@@ -6,6 +6,14 @@
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/common.css') }}">
   </head>
   <body onclick="location.href = '/view'">
-    <img src="../static/exposed/tutorial.png" alt="Click to continue" style="max-width: 100%; min-width: 100%">
+
+    <picture>
+      <source 
+         media="(max-device-width: 480px)"
+         srcset="../static/exposed/tutorial_device.png">
+      <img src="../static/exposed/tutorial.png" 
+      style="max-height: 100%; min-width: 100%"
+      alt="Click to continue">
+   </picture>
   </body>
 </html>
