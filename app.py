@@ -49,9 +49,9 @@ def tutorial():
 @app.route('/view')
 def view():
     r = requests.get("https://multiling-oeg.univ-nantes.fr/confTitle")
-    if(r.status_code == 200 and response.content.title != ""):
-        print("Conteeeeeeeeeeeeeeeeeeeeeeeent & son titleeeeeeeeeeeeee", response.content, response.content.title )
-        return render_template('view.html', title=response.content.title)
+    if(r.status_code == 200 and r.content.title != ""):
+        print("Conteeeeeeeeeeeeeeeeeeeeeeeent & son titleeeeeeeeeeeeee", r.content, r.content.title )
+        return render_template('view.html', title=r.content.title)
     else :
         return render_template('view.html', title=None)
 
