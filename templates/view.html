@@ -45,14 +45,14 @@
       </div>
       <div id="grid-column-display">
         <div class="grid-container-title-cloud">
-          {% if auto != None %}
+          {% if title != None %}
           <div id="title-conf">
             <p>
-              Keynote 1 (Dr. Sian Proctor): Space2inspire: fostering an open, creative, and J.E.D.I. space!
+              {{title}}
             </p>
           </div>
           {% endif %}
-          {% if auto == None %}
+          {% if title == None %}
           <div id="noTitle-conf"></div>
           {% endif %}
   
