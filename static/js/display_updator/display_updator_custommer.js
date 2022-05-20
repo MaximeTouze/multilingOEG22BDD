@@ -47,7 +47,7 @@ function updateTitle(){
     type: 'GET',
     url: '/confTitle',
     data: {},
-    succes: function(response){
+    success: function(response){
       console.log(response)
       if (response.title != ''){
         console.log(response.title)
