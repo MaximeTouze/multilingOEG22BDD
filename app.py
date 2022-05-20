@@ -55,8 +55,8 @@ def view():
     r = requests.get("https://multiling-oeg.univ-nantes.fr/confTitle")
     content = json.loads(r.content)
     print(content)
-    if(r.status_code == 200 and content["title"] != ""):
-        return render_template('view.html', title=content["title"])
+    if(r.status_code == 200 and content["title"][0] != ""):
+        return render_template('view.html', title=content["title"][0])
     else :
         return render_template('view.html', title=None)
 
@@ -64,8 +64,8 @@ def view():
 def view_auto():
     r = requests.get("https://multiling-oeg.univ-nantes.fr/confTitle")
     content = json.loads(r.content)
-    if(r.status_code == 200 and content["title"] != ""):
-        return render_template('view.html', title=content["title"], auto=True)
+    if(r.status_code == 200 and content["title"][0] != ""):
+        return render_template('view.html', title=content["title"][0], auto=True)
     else :
         return render_template('view.html', title=None, auto=True)
 
