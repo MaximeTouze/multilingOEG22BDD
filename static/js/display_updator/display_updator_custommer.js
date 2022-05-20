@@ -47,17 +47,21 @@ function updateTitle(){
     url: '/confTitle',
     data: {},
     success: function(response){
+      e = document.getElementById('title-conf')
       if (response.title != ''){
-        e = document.getElementById('title-conf')
-        console.log(e.id);
-        e.id = 'noTitle-conf'
-        console.log(document.getElementById('noTitle-conf'));
         if (e != null){
-          e.innerHTML = response.title
+          e.innerHTML = response.title;
+        } else {
+          e = document.getElementById('noTitle-conf');
+          e.id = 'title-conf';
+          e.innerHTML = response.title;
         }
+      } else if (e != null) {
+        e = document.getElementById('title-conf');
+        e.id = 'noTitle-conf';
       }
     }
-  })
+  });
 }
 
 
