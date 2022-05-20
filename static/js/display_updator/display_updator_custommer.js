@@ -47,7 +47,7 @@ function updateTitle(){
     url: '/confTitle',
     data: {},
     succes: function(response){
-      if (title != ''){
+      if (response.title != ''){
         e = document.getElementById('title-conf')
         if (e != null){
           e.innerHTML = title
