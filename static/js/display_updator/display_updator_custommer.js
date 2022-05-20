@@ -52,19 +52,6 @@ function updateTitle(){
         if (e != null){
           e.innerHTML = response.title
         }
-        if (e == null){
-          e.replaceWith("div")
-          e.id ="title-conf"
-          e.innerHTML = response.title
-        }
-      }
-
-      if (response.title == ''){
-        e = document.getElementById('title-conf')
-        if (e != null){
-          e.replaceWith("div")
-          e.id ="noTitle-conf"
-        }
       }
     }
   })
