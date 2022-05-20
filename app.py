@@ -58,8 +58,8 @@ def view():
 @app.route('/view_auto')
 def view_auto():
     r = requests.get("https://multiling-oeg.univ-nantes.fr/confTitle")
-    if(r.status_code == 200 and response.content.title != ""):
-        return render_template('view.html', title=response.content.title, auto=True)
+    if(r.status_code == 200 and r.content.title != ""):
+        return render_template('view.html', title=r.content.title, auto=True)
     else :
         return render_template('view.html', title=None, auto=True)
 
