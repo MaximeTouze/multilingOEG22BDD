@@ -50,7 +50,7 @@ function updateTitle(){
       if (response.title != ''){
         e = document.getElementById('title-conf')
         if (e != null){
-          e.innerHTML = title
+          e.innerHTML = response.title
         }
       }
     }
