@@ -50,6 +50,7 @@ def tutorial():
 def view():
     r = requests.get("https://multiling-oeg.univ-nantes.fr/confTitle")
     if(r.status_code == 200 and response.content.title != ""):
+        print("Conteeeeeeeeeeeeeeeeeeeeeeeent & son titleeeeeeeeeeeeee", response.content, response.content.title )
         return render_template('view.html', title=response.content.title)
     else :
         return render_template('view.html', title=None)
@@ -293,9 +294,10 @@ def GetConfTitle():
     )
     res = ""
     for confTitle in curr:
-        print(confTitle)
+        print("titleeeeeeeeeeeeeeee", confTitle)
         res = confTitle
     connect.close()
+    print("titleeeeeeeeeeeeeeee", res)
     return jsonify({'title': res})
 
 
