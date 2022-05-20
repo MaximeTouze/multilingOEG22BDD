@@ -167,6 +167,7 @@ def endConf():
 
 @app.route("/updateWordCloud", methods=['POST'])
 def updateWordCloud():
+    print("UpdateCloud called")
     #request.get_json()
     #print(request.get_json(force=True))
     #cloud = request.get_json(force=True)['WC']
