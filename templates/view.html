@@ -44,8 +44,22 @@
         <div class="basic_color_cell" id="logo"></div>
       </div>
       <div id="grid-column-display">
-        <div id="displayPanel" class="basic_color_cell view-display">
+        <div class="grid-container-title-cloud">
+          {% if title != None %}
+          <div id="title-conf">
+            <p>
+              {{title}}
+            </p>
+          </div>
+          {% endif %}
+          {% if title == None %}
+          <div id="noTitle-conf"></div>
+          {% endif %}
+  
+          <div id="displayPanel" class="basic_color_cell view-display">
+          </div>
         </div>
+       
 
         <div id="grid-column-display-selection">
           <div id="word_cloud-button" class="selected_color_cell"

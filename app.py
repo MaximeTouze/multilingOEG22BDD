@@ -5,6 +5,7 @@ import json
 import js2py
 import re
 import mariadb
+import requests
 import os as os
 
 import base64
@@ -47,12 +48,19 @@ def tutorial():
 
 @app.route('/view')
 def view():
-    #return render_template('blank_page.html')
-    return render_template('view.html')
+    r = requests.get("https://multiling-oeg.univ-nantes.fr/confTitle")
+    if(r.status_code == 200 and response.content.title != ""):
+        return render_template('view.html', title=response.content.title)
+    else : 
+        return render_template('view.html', title=None)
 
 @app.route('/view_auto')
 def view_auto():
-    return render_template('view.html', auto=True)
+    r = requests.get("https://multiling-oeg.univ-nantes.fr/confTitle")
+    if(r.status_code == 200 and response.content.title != ""):
+        return render_template('view.html', title=response.content.title, auto=True)
+    else : 
+        return render_template('view.html', title=None, auto=True)
 
 @app.route('/view_test')
 def view_test():
@@ -280,7 +288,7 @@ def GetConfTitle():
     conf_id = ConfManager.getCurrentConfID()
     (curr, connect) = connection()
     curr.execute(
-     "SELECT conferenceTitle from Conference where id = ?", (id,)
+     "SELECT conferenceTitle from Conference where id = ?", (conf_id,)
     )
     connect.close()
     for confTitle in curr:

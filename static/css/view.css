@@ -34,7 +34,49 @@
   color: #188aff;
 }
 
+
+.grid-container-title-cloud{
+  display: grid;
+  grid-template-rows: 6% 94%;
+}
+
+#noTitle-conf{
+  color: white;
+  border: 2px solid #188aff;
+  border-bottom: 0;
+}
+
+#title-conf{
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #188aff;
+  border-bottom: 0;
+}
+
+#title-conf p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%;
+  user-select: none;
+  text-decoration: none;
+}
+
+
 @media (min-device-width: 481px){
+
+  #title-conf p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    user-select: none;
+    text-decoration: none;
+  }
+
   #grid-column-languages-selection {
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20% 20%;
@@ -60,8 +102,18 @@
 
 @media (max-device-width: 480px){
 
+
+  #title-conf p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 640px;
+    user-select: none;
+    text-decoration: none;
+  }
+
   .grid-container{
-    font-size: 1.4em;
+    font-size: 1em;
   }
 
   #grid-column-languages-selection {
@@ -142,6 +194,7 @@
 }
 
 #displayPanel {
+  border-top: 0;
   cursor: default;
   background-color: white;
   color: #188aff;
@@ -173,3 +226,5 @@
   /* SAME AS COLUMNS, WE CAN USE REPEAT AS WELL
   grid-template-rows: repeat(4, 50px); */
 }
+
+
