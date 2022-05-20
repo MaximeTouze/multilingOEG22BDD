@@ -49,19 +49,12 @@
 #title-conf{
   background-color: black;
   color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border: 2px solid #188aff;
   border-bottom: 0;
-
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100%;
   padding: 0 40px;
-  user-select: none;
-  text-decoration: none;
 }
 
 @media (min-device-width: 481px){
