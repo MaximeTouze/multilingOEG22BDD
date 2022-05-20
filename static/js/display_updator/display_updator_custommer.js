@@ -48,6 +48,7 @@ function updateTitle(){
     data: {},
     succes: function(response){
       if (response.title != ''){
+        console.log(response.title)
         e = document.getElementById('title-conf')
         if (e != null){
           e.innerHTML = response.title
