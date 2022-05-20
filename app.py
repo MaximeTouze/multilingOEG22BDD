@@ -28,7 +28,7 @@ from flask_caching import Cache
 
 app = Flask(__name__, template_folder='templates')
 
-cache = Cache(app, config={'CACHE_TYPE': 'simple'})
+cache = Cache(app, config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': '/tmp'})
 
 app.debug = True
 
