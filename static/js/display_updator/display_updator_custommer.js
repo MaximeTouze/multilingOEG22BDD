@@ -57,7 +57,14 @@ function updateTitle(){
         }
         if (e == null){
           e = document.getElementById('noTitle-conf')
-          e.innerHTML = <div id="title-conf">response.title</div>
+          e.innerHTML = "<div id='title-conf'>response.title</div>"
+        }
+      }
+
+      if (response.title == ''){
+        e = document.getElementById('title-conf')
+        if (e != null){
+          e.innerHTML = "<div id='noTitle-conf'></div>"
         }
       }
     }
