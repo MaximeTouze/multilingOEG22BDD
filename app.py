@@ -242,6 +242,7 @@ def SentenceInsertion():
     # Database insertion
     (curr, connect) = connection()
     ConfManager.setCurrentConfID(conf_id)
+    print("iddddddddddd", conf_id, ConfManager.getCurrentConfID())
 
     # Conference
     conf_id = conf_id
@@ -288,6 +289,7 @@ def SentenceInsertion():
 @app.route("/confTitle", methods=['GET'])
 def GetConfTitle():
     conf_id = ConfManager.getCurrentConfID()
+    print ("id ???????????", conf_id)
     (curr, connect) = connection()
     curr.execute(
      "SELECT conferenceTitle from Conference where id = ?", (conf_id,)
