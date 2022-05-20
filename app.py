@@ -54,7 +54,7 @@ def tutorial():
 def view():
     r = requests.get("https://multiling-oeg.univ-nantes.fr/confTitle")
     content = json.loads(r.content)
-    print(content)
+    #print(content)
     if(r.status_code == 200 and content["title"] != ""):
         return render_template('view.html', title=content["title"][0])
     else :
@@ -88,7 +88,7 @@ def update():
 
 @app.route("/sentences", methods=['GET'])
 def sentences():
-    print(request.form, request.args)
+    #print(request.form, request.args)
     num_sentence = int(request.args.get('nb_sentence'))
     room = int(request.args.get('room'))
     lang = request.args.get('lang')
@@ -115,7 +115,7 @@ def sentences():
 
 
     connect.close()
-    print(sent)
+    #print(sent)
     #return jsonify({'sentences': sentences})
     return jsonify({'sentences': sent})
 
@@ -167,7 +167,6 @@ def endConf():
 
 @app.route("/updateWordCloud", methods=['POST'])
 def updateWordCloud():
-    print("UpdateCloud called")
     #request.get_json()
     #print(request.get_json(force=True))
     #cloud = request.get_json(force=True)['WC']
@@ -250,7 +249,7 @@ def SentenceInsertion():
     (curr, connect) = connection()
     #ConfManager.current_conf_id = conf_id
     cache.set("current_conf_id", conf_id)
-    print("iddddddddddd", conf_id, cache.get("current_conf_id"))
+    ##print("iddddddddddd", conf_id, cache.get("current_conf_id"))
 
     # Conference
     conf_id = conf_id
