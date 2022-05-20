@@ -40,10 +40,42 @@ function updateSentence (comeFromLoad = false) {
  });
 }
 
+// function to load automatically the server
+function display(){
+  $.ajax({
+    type: 'GET',
+    url: '/sentences',
+    data: {},
+    succes: function(response){
+      if (title != ''){
+        e = document.getElementById('title-conf')
+        if (e != null){
+          e.innerHTML = title
+        }
+      }
+    }
+  })
+}
+
+function reload_page(){
+  setInterval(                               //Periodically 
+  function()
+  {
+     $.getJSON(                            //Get some values from the server
+        $SCRIPT_ROOT + '/sentences',      // At this URL
+        {},                                // With no extra parameters
+        function(data)                     // And when you get a response
+        {
+          $("#title-conf").text(data.result);  
+                                           
+  },
+  500);
+}
+
 // Updates the display part
 async function display_update () {
   //Ongoing on healthfull basis
-
+  updateTitle()
   if (!updateUngoing || previous_display != selected_display) {
     updateUngoing = true;
 
