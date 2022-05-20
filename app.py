@@ -51,7 +51,7 @@ def view():
     r = requests.get("https://multiling-oeg.univ-nantes.fr/confTitle")
     if(r.status_code == 200 and response.content.title != ""):
         return render_template('view.html', title=response.content.title)
-    else : 
+    else :
         return render_template('view.html', title=None)
 
 @app.route('/view_auto')
@@ -59,7 +59,7 @@ def view_auto():
     r = requests.get("https://multiling-oeg.univ-nantes.fr/confTitle")
     if(r.status_code == 200 and response.content.title != ""):
         return render_template('view.html', title=response.content.title, auto=True)
-    else : 
+    else :
         return render_template('view.html', title=None, auto=True)
 
 @app.route('/view_test')
@@ -240,6 +240,7 @@ def SentenceInsertion():
 
     # Database insertion
     (curr, connect) = connection()
+    ConfManager.setCurrentConfID(conf_id)
 
     # Conference
     conf_id = conf_id

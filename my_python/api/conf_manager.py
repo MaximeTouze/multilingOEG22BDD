@@ -15,6 +15,9 @@ current_conf_id = ""
 confrence_status = {}
 confrence_lang = {}
 
+def setCurrentConfID(id):
+    current_conf_id = id
+
 def getCurrentConfID() :
     return current_conf_id
 
