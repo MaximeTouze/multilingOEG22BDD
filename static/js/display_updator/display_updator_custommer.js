@@ -42,29 +42,26 @@ function updateSentence (comeFromLoad = false) {
 
 // function to load automatically the server
 function updateTitle(){
-  console.log("test")
   $.ajax({
     type: 'GET',
     url: '/confTitle',
     data: {},
     success: function(response){
-      console.log(response)
       if (response.title != ''){
-        console.log(response.title)
         e = document.getElementById('title-conf')
         if (e != null){
           e.innerHTML = response.title
         }
         if (e == null){
           e = document.getElementById('noTitle-conf')
-          e.innerHTML = "<div id='title-conf'>response.title</div>"
+          e.replaceWith("<div id='title-conf'>response.title</div>")
         }
       }
 
       if (response.title == ''){
         e = document.getElementById('title-conf')
         if (e != null){
-          e.innerHTML = "<div id='noTitle-conf'></div>"
+          e.replaceWith("<div id='noTitle-conf'></div>")
         }
       }
     }
