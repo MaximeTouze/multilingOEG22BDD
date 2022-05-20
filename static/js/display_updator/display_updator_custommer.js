@@ -42,12 +42,14 @@ function updateSentence (comeFromLoad = false) {
 
 // function to load automatically the server
 function updateTitle(){
+  console.log('called');
   $.ajax({
     type: 'GET',
     url: '/confTitle',
     data: {},
     success: function(response){
       e = document.getElementById('title-conf')
+      console.log('0', e, response.title);
       if (response.title != ''){
         console.log('1', e);
         if (e != null){
