@@ -42,6 +42,7 @@ function updateSentence (comeFromLoad = false) {
 
 // function to load automatically the server
 function updateTitle(){
+  console.log("test")
   $.ajax({
     type: 'GET',
     url: '/confTitle',
@@ -55,7 +56,8 @@ function updateTitle(){
           e.innerHTML = response.title
         }
         if (e == null){
-          e.innerHTML = response.title
+          e = document.getElementById('noTitle-conf')
+          e.innerHTML = <div id="title-conf">response.title</div>
         }
       }
     }
@@ -67,7 +69,7 @@ function updateTitle(){
 // Updates the display part
 async function display_update () {
   //Ongoing on healthfull basis
-  updateTitle()
+  updateTitle();
   if (!updateUngoing || previous_display != selected_display) {
     updateUngoing = true;
 
