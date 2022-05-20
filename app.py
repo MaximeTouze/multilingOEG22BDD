@@ -291,6 +291,8 @@ def GetConfTitle():
     curr.execute(
      "SELECT conferenceTitle from Conference where id = ?", (conf_id,)
     )
+
+    connect.commit()
     connect.close()
     for confTitle in curr:
         print(confTitle)
