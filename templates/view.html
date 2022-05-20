@@ -44,8 +44,22 @@
         <div class="basic_color_cell" id="logo"></div>
       </div>
       <div id="grid-column-display">
-        <div id="displayPanel" class="basic_color_cell view-display">
+        <div class="grid-container-title-cloud">
+          {% if auto != None %}
+          <div id="title-conf">
+            <p>
+              Keynote 1 (Dr. Sian Proctor): Space2inspire: fostering an open, creative, and J.E.D.I. space!
+            </p>
+          </div>
+          {% endif %}
+          {% if auto == None %}
+          <div id="noTitle-conf"></div>
+          {% endif %}
+  
+          <div id="displayPanel" class="basic_color_cell view-display">
+          </div>
         </div>
+       
 
         <div id="grid-column-display-selection">
           <div id="word_cloud-button" class="selected_color_cell"
