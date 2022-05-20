@@ -288,7 +288,7 @@ def GetConfTitle():
     conf_id = ConfManager.getCurrentConfID()
     (curr, connect) = connection()
     curr.execute(
-     "SELECT conferenceTitle from Conference where id = ?", (id,)
+     "SELECT conferenceTitle from Conference where id = ?", (conf_id,)
     )
     connect.close()
     for confTitle in curr:
