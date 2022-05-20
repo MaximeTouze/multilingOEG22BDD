@@ -49,15 +49,18 @@ function updateTitle(){
     success: function(response){
       e = document.getElementById('title-conf')
       if (response.title != ''){
+        console.log('1', e);
         if (e != null){
+          console.log('2', e);
           e.innerHTML = response.title;
         } else {
+          console.log('3', e);
           e = document.getElementById('noTitle-conf');
           e.id = 'title-conf';
           e.innerHTML = response.title;
         }
       } else if (e != null) {
-        e = document.getElementById('title-conf');
+        console.log('4', e);
         e.id = 'noTitle-conf';
       }
     }
