@@ -50,6 +50,8 @@ function updateTitle(){
       if (response.title != ''){
         e = document.getElementById('title-conf')
         console.log(e.id);
+        e.id = 'noTitle-conf'
+        console.log(document.getElementById('noTitle-conf'));
         if (e != null){
           e.innerHTML = response.title
         }
