@@ -58,8 +58,8 @@ def view():
 @app.route('/view_auto')
 def view_auto():
     r = requests.get("https://multiling-oeg.univ-nantes.fr/confTitle")
-    if(r.status_code == 200 and response.content.title != ""):
-        return render_template('view.html', title=response.content.title, auto=True)
+    if(r.status_code == 200 and r.content.title != ""):
+        return render_template('view.html', title=r.content.title, auto=True)
     else :
         return render_template('view.html', title=None, auto=True)
 
@@ -242,6 +242,7 @@ def SentenceInsertion():
     # Database insertion
     (curr, connect) = connection()
     ConfManager.setCurrentConfID(conf_id)
+    print("iddddddddddd", conf_id, ConfManager.getCurrentConfID())
 
     # Conference
     conf_id = conf_id
@@ -288,15 +289,17 @@ def SentenceInsertion():
 @app.route("/confTitle", methods=['GET'])
 def GetConfTitle():
     conf_id = ConfManager.getCurrentConfID()
+    print ("id ???????????", conf_id)
     (curr, connect) = connection()
     curr.execute(
      "SELECT conferenceTitle from Conference where id = ?", (conf_id,)
     )
     res = ""
     for confTitle in curr:
-        print(confTitle)
+        print("titleeeeeeeeeeeeeeee", confTitle)
         res = confTitle
     connect.close()
+    print("titleeeeeeeeeeeeeeee", res)
     return jsonify({'title': res})
 
 
