@@ -264,7 +264,7 @@ def Mostly_liked_sentences(room):
         print(f"Error: {e}")
     connect.close()
 
-    result = {'liked_sentences': result}
+    result = {"liked_sentences": result}
     print("Mostly_liked_sentences", result)
     return jsonify(result)
 

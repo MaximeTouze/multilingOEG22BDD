@@ -284,6 +284,7 @@ def GetConfTitle():
     )
     connect.close()
     for confTitle in curr:
+        print(confTitle)
         return jsonify({'title': confTitle})
 
 
