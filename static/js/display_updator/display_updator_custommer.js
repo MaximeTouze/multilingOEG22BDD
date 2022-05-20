@@ -57,20 +57,7 @@ function display(){
   })
 }
 
-function reload_page(){
-  setInterval(                               //Periodically 
-  function()
-  {
-     $.getJSON(                            //Get some values from the server
-        $SCRIPT_ROOT + '/sentences',      // At this URL
-        {},                                // With no extra parameters
-        function(data)                     // And when you get a response
-        {
-          $("#title-conf").text(data.result);  
-                                           
-  },
-  500);
-}
+
 
 // Updates the display part
 async function display_update () {
