@@ -49,8 +49,9 @@ def tutorial():
 @app.route('/view')
 def view():
     r = requests.get("https://multiling-oeg.univ-nantes.fr/confTitle")
-    if(r.status_code == 200 and r.content.title != ""):
-        return render_template('view.html', title=r.content.title)
+    content = json.loads(r.content)
+    if(r.status_code == 200 and content.title != ""):
+        return render_template('view.html', title=content.title)
     else :
         return render_template('view.html', title=None)
 
