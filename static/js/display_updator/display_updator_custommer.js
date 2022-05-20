@@ -44,7 +44,7 @@ function updateSentence (comeFromLoad = false) {
 function updateTitle(){
   $.ajax({
     type: 'GET',
-    url: '/sentences',
+    url: '/confTitle',
     data: {},
     succes: function(response){
       if (title != ''){
