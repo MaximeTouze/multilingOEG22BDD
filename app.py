@@ -291,8 +291,9 @@ def GetConfTitle():
     curr.execute(
      "SELECT conferenceTitle from Conference where id = ?", (conf_id,)
     )
-
+    res = ""
     for confTitle in curr:
+        print(confTitle)
         res = confTitle
     connect.close()
     return jsonify({'title': res})
