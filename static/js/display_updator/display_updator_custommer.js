@@ -41,7 +41,7 @@ function updateSentence (comeFromLoad = false) {
 }
 
 // function to load automatically the server
-function display(){
+function updateTitle(){
   $.ajax({
     type: 'GET',
     url: '/sentences',
