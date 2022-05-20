@@ -19,12 +19,17 @@ import my_python.manager.cache_data_manager as CacheDataManager
 import my_python.api.likeSystem as likeSystem
 from my_python.DB_connect import connection
 import my_python.const.lang_const as LangConst
+from flask_caching import Cache
+
 
 #import jsonpickle
 #import numpy as np
 #import cv2
 
 app = Flask(__name__, template_folder='templates')
+
+cache = Cache(app, config={'CACHE_TYPE': 'simple'})
+
 app.debug = True
 
 #app.run(ssl_context="adhoc")
@@ -240,8 +245,9 @@ def SentenceInsertion():
 
     # Database insertion
     (curr, connect) = connection()
-    ConfManager.current_conf_id = conf_id
-    print("iddddddddddd", conf_id, ConfManager.current_conf_id)
+    #ConfManager.current_conf_id = conf_id
+    cache.set("current_conf_id", conf_id)
+    print("iddddddddddd", conf_id, cache.get("current_conf_id"))
 
     # Conference
     conf_id = conf_id
@@ -287,7 +293,8 @@ def SentenceInsertion():
 
 @app.route("/confTitle", methods=['GET'])
 def GetConfTitle():
-    conf_id = ConfManager.current_conf_id
+    #conf_id = ConfManager.current_conf_id
+    conf_id = cache.get("current_conf_id")
     print ("id ???????????", conf_id)
     (curr, connect) = connection()
     curr.execute(
