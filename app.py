@@ -317,7 +317,7 @@ def GetConfTitle():
 
 @app.route("/results")
 def ResultsPage():
-    results= likeSystem.Mostly_liked_sentences(1)
+    results= likeSystem.Mostly_liked_sentences(1, cache)
     return render_template('results.html', result= results)
 
 if __name__== '__main__':
