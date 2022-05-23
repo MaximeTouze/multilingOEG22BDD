@@ -52,6 +52,7 @@ def tutorial():
 
 @app.route('/view')
 def view():
+    print("=== view asked ===")
     r = requests.get("https://multiling-oeg.univ-nantes.fr/confTitle")
     content = json.loads(r.content)
     #print(content)
@@ -88,6 +89,7 @@ def update():
 
 @app.route("/sentences", methods=['GET'])
 def sentences():
+    print("=== sentences asked ===")
     #print(request.form, request.args)
     num_sentence = int(request.args.get('nb_sentence'))
     room = int(request.args.get('room'))
@@ -126,11 +128,13 @@ def sentences():
 
 @app.route("/likeSentence", methods=['POST'])
 def LikeSentence():
+    print("=== one more like ===")
     likeSystem.LikeSentence(request)
     return render_template('view.html')
 
 @app.route("/UnlikeSentence", methods=['POST'])
 def UnlikeSentence():
+    print("=== one less like ===")
     likeSystem.UnlikeSentence(request)
 
     return render_template('view.html')
@@ -167,6 +171,7 @@ def endConf():
 
 @app.route("/updateWordCloud", methods=['POST'])
 def updateWordCloud():
+    print("=== new WordCloud ===")
     #request.get_json()
     #print(request.get_json(force=True))
     #cloud = request.get_json(force=True)['WC']
@@ -224,6 +229,7 @@ def getSentence_Like_Room_Lang(room, lang):
 
 @app.route("/insertion", methods=['POST'])
 def SentenceInsertion():
+    print("=== new sentence ===")
     values = request.data
     # Bytes to string
     values = values.decode('utf8')
@@ -309,7 +315,9 @@ def GetConfTitle():
 
 
 
-
+@app.route("/results")
+def ResultsPage():
+    return render_template('results.html')
 
 if __name__== '__main__':
     app.run()

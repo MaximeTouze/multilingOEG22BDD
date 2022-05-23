@@ -266,7 +266,7 @@ def Mostly_liked_sentences(room):
 
     result = {"liked_sentences": result}
     print("Mostly_liked_sentences", result)
-    return jsonify(result)
+    return result
 
 
 def getArabMostlyLiked(curr):
