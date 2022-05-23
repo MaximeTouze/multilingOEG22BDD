@@ -1,7 +1,7 @@
 $.ajax({
   type:'GET',
   url:'/mostly_liked_sentences',
-  data:'',
+  data:{},
   success:function(response)
   {
     var elt = document.getElementById('displayPanel');
