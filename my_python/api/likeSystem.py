@@ -273,30 +273,30 @@ def Mostly_liked_sentences(room, cache):
 
 def getArabMostlyLiked(curr, cache):
     curr.execute(
-        "SELECT Sentence.arabic FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.arabic_like = (SELECT MAX(Likes.arabic_like) FROM Likes)", (cache.get("current_conf_id"),)
+        "SELECT Sentence.arabic Likes.arabic_like FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.arabic_like = (SELECT MAX(Likes.arabic_like) FROM Likes)", (cache.get("current_conf_id"),)
     )
-    for (sent) in curr:
+    for (sent, likes) in curr:
         return {"sentence": "arab one ", "nb_likes": 1}
 
 def getEngMostlyLiked(curr, cache):
     curr.execute(
-        "SELECT Sentence.english FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.english_like = (SELECT MAX(Likes.english_like) FROM Likes)", (cache.get("current_conf_id"),)
+        "SELECT Sentence.english Likes.english_like FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.english_like = (SELECT MAX(Likes.english_like) FROM Likes)", (cache.get("current_conf_id"),)
     )
-    for (sent) in curr:
+    for (sent, likes) in curr:
         return {"sentence": "en two", "nb_likes": 2}
 
 def getFrMostlyLiked(curr, cache):
     curr.execute(
-        "SELECT Sentence.french FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.french_like  = (SELECT MAX(Likes.french_like) FROM Likes)", (cache.get("current_conf_id"),)
+        "SELECT Sentence.french Likes.french_like FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.french_like  = (SELECT MAX(Likes.french_like) FROM Likes)", (cache.get("current_conf_id"),)
     )
-    for (sent) in curr:
+    for (sent, likes) in curr:
         return {"sentence": "fr three", "nb_likes": 3}
 
 def getEspMostlyLiked(curr, cache):
     curr.execute(
-        "SELECT Sentence.spanish FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.spanish_like = (SELECT MAX(Likes.spanish_like) FROM Likes)", (cache.get("current_conf_id"),)
+        "SELECT Sentence.spanish Likes.spanish_like FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.spanish_like = (SELECT MAX(Likes.spanish_like) FROM Likes)", (cache.get("current_conf_id"),)
     )
-    for (sent) in curr:
+    for (sent, likes) in curr:
         return {"sentence": "esp four", "nb_likes": 4}
 
 # Place the tab rank value to the tab rank-1
