@@ -1,9 +1,8 @@
+function onload() {
 $.ajax({
   type:'GET',
   url:'/mostly_liked_sentences',
   data:{},
-  contentType: "application/json",
-  dataType: "json",
   success:function(response)
   {
     var elt = document.getElementById('displayPanel');
@@ -21,3 +20,4 @@ $.ajax({
     }
   }
 });
+}
