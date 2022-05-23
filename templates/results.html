@@ -28,7 +28,7 @@
       {% else %}
       <div class='sentence'><p>Ceci est une phrase likée</p> <p class='nb_like'>5</p><p class='heart.liked'></p> </div>
       {% endif %}
-      {% for (lang, res) in result %}
+      {% for lang, res in result.items() %}
       <div class='sentence'><p>{{res['sentence']}}</p> <p class='nb_like'>{{res['nb_likes']}}</p><p class='heart.liked'></p> </div>
       {% endfor %}
     </div>
