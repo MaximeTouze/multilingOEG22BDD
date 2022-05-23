@@ -4,6 +4,7 @@ from my_python.DB_connect import connection
 
 import my_python.const.lang_const as LangConst
 import mariadb
+from flask_caching import Cache
 
 # sentence_like = {ENGLISH:{0:5, 5:2}, FRENCH:{1:5, 5:2}, ESPAGNOL:{3:5, 5:2}, ARAB:{4:5, 5:2}}
 
@@ -256,10 +257,11 @@ def Mostly_liked_sentences(room):
     (curr, connect) = connection()
 
     try:
-        result[LangConst.ARAB] = getArabMostlyLiked(curr)
-        result[LangConst.ESPAGNOL] = getEspMostlyLiked(curr)
-        result[LangConst.FRENCH] = getFrMostlyLiked(curr)
         result[LangConst.ENGLISH] = getEngMostlyLiked(curr)
+        result[LangConst.FRENCH] = getFrMostlyLiked(curr)
+        result[LangConst.ESPAGNOL] = getEspMostlyLiked(curr)
+        result[LangConst.ARAB] = getArabMostlyLiked(curr)
+
     except mariadb.Error as e:
         print(f"Error: {e}")
     connect.close()
@@ -271,28 +273,28 @@ def Mostly_liked_sentences(room):
 
 def getArabMostlyLiked(curr):
     curr.execute(
-        "SELECT Sentence.arabic FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.arabic_like = (SELECT MAX(Likes.arabic_like) FROM Likes)"
+        "SELECT Sentence.arabic FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.arabic_like = (SELECT MAX(Likes.arabic_like) FROM Likes)", (current_conf_id,)
     )
     for (sent) in curr:
         return {"sentence": "arab one ", "nb_likes": 1}
 
 def getEngMostlyLiked(curr):
     curr.execute(
-        "SELECT Sentence.english FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.english_like = (SELECT MAX(Likes.english_like) FROM Likes)"
+        "SELECT Sentence.english FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.english_like = (SELECT MAX(Likes.english_like) FROM Likes)", (current_conf_id,)
     )
     for (sent) in curr:
         return {"sentence": "en two", "nb_likes": 2}
 
 def getFrMostlyLiked(curr):
     curr.execute(
-        "SELECT Sentence.french FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.french_like  = (SELECT MAX(Likes.french_like) FROM Likes)"
+        "SELECT Sentence.french FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.french_like  = (SELECT MAX(Likes.french_like) FROM Likes)", (current_conf_id,)
     )
     for (sent) in curr:
         return {"sentence": "fr three", "nb_likes": 3}
 
 def getEspMostlyLiked(curr):
     curr.execute(
-        "SELECT Sentence.spanish FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.spanish_like = (SELECT MAX(Likes.spanish_like) FROM Likes)"
+        "SELECT Sentence.spanish FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.spanish_like = (SELECT MAX(Likes.spanish_like) FROM Likes)", (current_conf_id,)
     )
     for (sent) in curr:
         return {"sentence": "esp four", "nb_likes": 4}

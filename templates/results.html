@@ -23,13 +23,7 @@
 
   <body>
     <div id="displayPanel" class="basic_color_cell view-display">
-      {% if result != None %}
-      {{result['liked_sentences']}}
-      {% else %}
-      <div class='sentence'><p>Ceci est une phrase likée</p> <p class='nb_like'>5</p><p class='heart.liked'></p> </div>
-      {% endif %}
       {% for lang, res in result['liked_sentences'].items() %}
-      {% print(lang, ':', res, ';;;;')%}
       <div class='sentence'><p>{{res['sentence']}}</p> <p class='nb_like'>{{res['nb_likes']}}</p><p class='heart.liked'></p> </div>
       {% endfor %}
     </div>
