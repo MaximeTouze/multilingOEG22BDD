@@ -274,28 +274,28 @@ def getArabMostlyLiked(curr):
         "SELECT Sentence.arabic FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.arabic_like = (SELECT MAX(Likes.arabic_like) FROM Likes)"
     )
     for (sent) in curr:
-        return {"sentence": "", "nb_likes": 1}
+        return {"sentence": "arab one ", "nb_likes": 1}
 
 def getEngMostlyLiked(curr):
     curr.execute(
         "SELECT Sentence.english FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.english_like = (SELECT MAX(Likes.english_like) FROM Likes)"
     )
     for (sent) in curr:
-        return {"sentence": "", "nb_likes": 1}
+        return {"sentence": "en two", "nb_likes": 2}
 
 def getFrMostlyLiked(curr):
     curr.execute(
         "SELECT Sentence.french FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.french_like  = (SELECT MAX(Likes.french_like) FROM Likes)"
     )
     for (sent) in curr:
-        return {"sentence": "", "nb_likes": 1}
+        return {"sentence": "fr three", "nb_likes": 3}
 
 def getEspMostlyLiked(curr):
     curr.execute(
         "SELECT Sentence.spanish FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.spanish_like = (SELECT MAX(Likes.spanish_like) FROM Likes)"
     )
     for (sent) in curr:
-        return {"sentence": "", "nb_likes": 1}
+        return {"sentence": "esp four", "nb_likes": 4}
 
 # Place the tab rank value to the tab rank-1
 # WARN Does not change the given rank value, you have to do it
