@@ -238,7 +238,10 @@ def UnlikeSentence(request):
 #  }
 # }
 #}
-def Mostly_liked_sentences(room, cache):
+
+##################### For one conf ##############################################
+
+def Mostly_liked_sentences(room, conf_id):
     result = {}
     #for language in LANGUAGES:
     #    sentence_key_memory = -1
@@ -255,12 +258,87 @@ def Mostly_liked_sentences(room, cache):
     #        result[language] = {"sentence": "", "nb_likes": sentence_like_memory}
 
     (curr, connect) = connection()
+    if (conf_id != None and conf_id != ''):
+        try:
+            result[LangConst.ENGLISH] = getEngMostlyLiked(curr, conf_id)
+            result[LangConst.FRENCH] = getFrMostlyLiked(curr, conf_id)
+            result[LangConst.ESPAGNOL] = getEspMostlyLiked(curr, conf_id)
+            result[LangConst.ARAB] = getArabMostlyLiked(curr, conf_id)
 
+        except mariadb.Error as e:
+            print(f"Error: {e}")
+        connect.close()
+
+        result = {"liked_sentences": result}
+        print("Mostly_liked_sentences", result)
+        return result
+    else :
+        print("!!! NO CONF ID !!!")
+
+
+def getArabMostlyLiked(curr, conf_id):
+    curr.execute(
+
+        "SELECT Sentence.arabic, Likes.arabic_like FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.arabic_like = (SELECT MAX(Likes.arabic_like) FROM Likes)", (conf_id,)
+    )
+
+    for (sent, likes) in curr:
+        return {"sentence": sent, "nb_likes": likes}
+    return {"sentence": "No arabic liked sentence found", "nb_likes": ""}
+
+
+def getEngMostlyLiked(curr, conf_id):
+    curr.execute(
+        "SELECT Sentence.english, Likes.english_like FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.english_like = (SELECT MAX(Likes.english_like) FROM Likes)", (conf_id,)
+    )
+
+    for (sent, likes) in curr:
+        return {"sentence": sent, "nb_likes": likes}
+    return {"sentence": "No english liked sentence found", "nb_likes": ""}
+
+def getFrMostlyLiked(curr, conf_id):
+    curr.execute(
+        "SELECT Sentence.french, Likes.french_like FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.french_like  = (SELECT MAX(Likes.french_like) FROM Likes)", (conf_id,)
+    )
+
+    for (sent, likes) in curr:
+        return {"sentence": sent, "nb_likes": likes}
+    return {"sentence": "No french liked sentence found", "nb_likes": ""}
+
+def getEspMostlyLiked(curr, conf_id):
+    curr.execute(
+        "SELECT Sentence.spanish, Likes.spanish_like FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.spanish_like = (SELECT MAX(Likes.spanish_like) FROM Likes)", (conf_id,)
+    )
+
+    for (sent, likes) in curr:
+        return {"sentence":sent, "nb_likes": likes}
+    return {"sentence": "No espagnol liked sentence found", "nb_likes": ""}
+
+
+############################## TOTAL ########################################
+
+def Mostly_liked_sentences_total(room):
+    result = {}
+    #for language in LANGUAGES:
+    #    sentence_key_memory = -1
+    #    sentence_like_memory = -1
+    #    for sentence_key in getSentence_Like_Room_Lang(room, language).keys():
+    #        if (getSentence_Like_Room_Lang(room, language)[sentence_key] > sentence_like_memory):
+    #            sentence_like_memory = sentence_like[language][sentence_key]
+    #            sentence_key_memory = sentence_key
+
+        # end for
+    #    if (sentence_key_memory != -1 and sentence_like_memory < 1):
+    #        result[language] = {"sentence": getSentence_Like_Room_Lang(room, language)[sentence_key_memory], "nb_likes": sentence_like_memory}
+    #    else:
+    #        result[language] = {"sentence": "", "nb_likes": sentence_like_memory}
+
+    (curr, connect) = connection()
     try:
-        result[LangConst.ENGLISH] = getEngMostlyLiked(curr, cache)
-        result[LangConst.FRENCH] = getFrMostlyLiked(curr, cache)
-        result[LangConst.ESPAGNOL] = getEspMostlyLiked(curr, cache)
-        result[LangConst.ARAB] = getArabMostlyLiked(curr, cache)
+        result[LangConst.ENGLISH] = getEngMostlyLiked_total(curr)
+        result[LangConst.FRENCH] = getFrMostlyLiked_total(curr)
+        result[LangConst.ESPAGNOL] = getEspMostlyLiked_total(curr)
+        result[LangConst.ARAB] = getArabMostlyLiked_total(curr)
 
     except mariadb.Error as e:
         print(f"Error: {e}")
@@ -271,10 +349,11 @@ def Mostly_liked_sentences(room, cache):
     return result
 
 
-def getArabMostlyLiked(curr, cache):
+
+def getArabMostlyLiked_total(curr):
     curr.execute(
 
-        "SELECT Sentence.arabic, Likes.arabic_like FROM Sentence  INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.arabic_like = (SELECT MAX(Likes.arabic_like) FROM Likes)"
+        "SELECT Sentence.arabic, Likes.arabic_like FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.arabic_like = (SELECT MAX(Likes.arabic_like) FROM Likes)"
     )
 
     for (sent, likes) in curr:
@@ -282,7 +361,7 @@ def getArabMostlyLiked(curr, cache):
     return {"sentence": "No arabic liked sentence found", "nb_likes": ""}
 
 
-def getEngMostlyLiked(curr, cache):
+def getEngMostlyLiked(curr):
     curr.execute(
         "SELECT Sentence.english, Likes.english_like FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.english_like = (SELECT MAX(Likes.english_like) FROM Likes)"
     )
@@ -291,7 +370,7 @@ def getEngMostlyLiked(curr, cache):
         return {"sentence": sent, "nb_likes": likes}
     return {"sentence": "No english liked sentence found", "nb_likes": ""}
 
-def getFrMostlyLiked(curr, cache):
+def getFrMostlyLiked(curr):
     curr.execute(
         "SELECT Sentence.french, Likes.french_like FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.french_like  = (SELECT MAX(Likes.french_like) FROM Likes)"
     )
@@ -300,7 +379,7 @@ def getFrMostlyLiked(curr, cache):
         return {"sentence": sent, "nb_likes": likes}
     return {"sentence": "No french liked sentence found", "nb_likes": ""}
 
-def getEspMostlyLiked(curr, cache):
+def getEspMostlyLiked(curr):
     curr.execute(
         "SELECT Sentence.spanish, Likes.spanish_like FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.spanish_like = (SELECT MAX(Likes.spanish_like) FROM Likes)"
     )
