@@ -324,7 +324,7 @@ def ResultsPage():
 
 
 @app.route("/total_results")
-def ResultsPage():
+def ResultsPageTotal():
     #cache.set('current_conf_id', 'J11600')
     results= likeSystem.Mostly_liked_sentences_total(1)
     return render_template('results.html', result= results)
