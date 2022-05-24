@@ -259,6 +259,7 @@ def Mostly_liked_sentences(room, conf_id):
 
     (curr, connect) = connection()
     if (conf_id != None and conf_id != ''):
+        print(conf_id)
         try:
             result[LangConst.ENGLISH] = getEngMostlyLiked(curr, conf_id)
             result[LangConst.FRENCH] = getFrMostlyLiked(curr, conf_id)
@@ -279,7 +280,7 @@ def Mostly_liked_sentences(room, conf_id):
 def getArabMostlyLiked(curr, conf_id):
     curr.execute(
 
-        "SELECT Sentence.arabic, Likes.arabic_like FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.arabic_like = (SELECT MAX(Likes.arabic_like) FROM Likes)", (conf_id,)
+        "SELECT Sentence.arabic, Likes.arabic_like FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Sentence.conf_id=? AND Likes.arabic_like = (SELECT MAX(Likes.arabic_like) FROM Likes)", (conf_id,)
     )
 
     for (sent, likes) in curr:
@@ -289,7 +290,7 @@ def getArabMostlyLiked(curr, conf_id):
 
 def getEngMostlyLiked(curr, conf_id):
     curr.execute(
-        "SELECT Sentence.english, Likes.english_like FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.english_like = (SELECT MAX(Likes.english_like) FROM Likes)", (conf_id,)
+        "SELECT Sentence.english, Likes.english_like FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Sentence.conf_id=? AND Likes.english_like = (SELECT MAX(Likes.english_like) FROM Likes)", (conf_id,)
     )
 
     for (sent, likes) in curr:
@@ -298,7 +299,7 @@ def getEngMostlyLiked(curr, conf_id):
 
 def getFrMostlyLiked(curr, conf_id):
     curr.execute(
-        "SELECT Sentence.french, Likes.french_like FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.french_like  = (SELECT MAX(Likes.french_like) FROM Likes)", (conf_id,)
+        "SELECT Sentence.french, Likes.french_like FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Sentence.conf_id=? AND Likes.french_like  = (SELECT MAX(Likes.french_like) FROM Likes)", (conf_id,)
     )
 
     for (sent, likes) in curr:
@@ -307,7 +308,7 @@ def getFrMostlyLiked(curr, conf_id):
 
 def getEspMostlyLiked(curr, conf_id):
     curr.execute(
-        "SELECT Sentence.spanish, Likes.spanish_like FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.spanish_like = (SELECT MAX(Likes.spanish_like) FROM Likes)", (conf_id,)
+        "SELECT Sentence.spanish, Likes.spanish_like FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Sentence.conf_id=? AND Likes.spanish_like = (SELECT MAX(Likes.spanish_like) FROM Likes)", (conf_id,)
     )
 
     for (sent, likes) in curr:
