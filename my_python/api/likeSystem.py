@@ -276,28 +276,32 @@ def getArabMostlyLiked(curr, cache):
         "SELECT Sentence.arabic Likes.arabic_like FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.arabic_like = (SELECT MAX(Likes.arabic_like) FROM Likes)", (cache.get("current_conf_id"),)
     )
     for (sent, likes) in curr:
-        return {"sentence": "arab one ", "nb_likes": 1}
+        return {"sentence": sent, "nb_likes": likes}
+    return {"sentence": "No arabic liked sentence found", "nb_likes": ""}
 
 def getEngMostlyLiked(curr, cache):
     curr.execute(
         "SELECT Sentence.english Likes.english_like FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.english_like = (SELECT MAX(Likes.english_like) FROM Likes)", (cache.get("current_conf_id"),)
     )
     for (sent, likes) in curr:
-        return {"sentence": "en two", "nb_likes": 2}
+        return {"sentence": sent, "nb_likes": likes}
+    return {"sentence": "No english liked sentence found", "nb_likes": ""}
 
 def getFrMostlyLiked(curr, cache):
     curr.execute(
         "SELECT Sentence.french Likes.french_like FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.french_like  = (SELECT MAX(Likes.french_like) FROM Likes)", (cache.get("current_conf_id"),)
     )
     for (sent, likes) in curr:
-        return {"sentence": "fr three", "nb_likes": 3}
+        return {"sentence": sent, "nb_likes": likes}
+    return {"sentence": "No french liked sentence found", "nb_likes": ""}
 
 def getEspMostlyLiked(curr, cache):
     curr.execute(
         "SELECT Sentence.spanish Likes.spanish_like FROM Sentence WHERE conf_id=? INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.spanish_like = (SELECT MAX(Likes.spanish_like) FROM Likes)", (cache.get("current_conf_id"),)
     )
     for (sent, likes) in curr:
-        return {"sentence": "esp four", "nb_likes": 4}
+        return {"sentence":sent, "nb_likes": likes}
+    return {"sentence": "No espagnol liked sentence found", "nb_likes": ""}
 
 # Place the tab rank value to the tab rank-1
 # WARN Does not change the given rank value, you have to do it
