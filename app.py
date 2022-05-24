@@ -317,7 +317,7 @@ def GetConfTitle():
 
 @app.route("/results")
 def ResultsPage():
-    cache.set('current_conf_id', 'id')
+    cache.set('current_conf_id', 'J11600')
     results= likeSystem.Mostly_liked_sentences(1, cache)
     return render_template('results.html', result= results)
 
