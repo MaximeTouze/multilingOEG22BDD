@@ -361,7 +361,7 @@ def getArabMostlyLiked_total(curr):
     return {"sentence": "No arabic liked sentence found", "nb_likes": ""}
 
 
-def getEngMostlyLiked(curr):
+def getEngMostlyLiked_total(curr):
     curr.execute(
         "SELECT Sentence.english, Likes.english_like FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.english_like = (SELECT MAX(Likes.english_like) FROM Likes)"
     )
@@ -370,7 +370,7 @@ def getEngMostlyLiked(curr):
         return {"sentence": sent, "nb_likes": likes}
     return {"sentence": "No english liked sentence found", "nb_likes": ""}
 
-def getFrMostlyLiked(curr):
+def getFrMostlyLiked_total(curr):
     curr.execute(
         "SELECT Sentence.french, Likes.french_like FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.french_like  = (SELECT MAX(Likes.french_like) FROM Likes)"
     )
@@ -379,7 +379,7 @@ def getFrMostlyLiked(curr):
         return {"sentence": sent, "nb_likes": likes}
     return {"sentence": "No french liked sentence found", "nb_likes": ""}
 
-def getEspMostlyLiked(curr):
+def getEspMostlyLiked_total(curr):
     curr.execute(
         "SELECT Sentence.spanish, Likes.spanish_like FROM Sentence INNER JOIN Likes ON Sentence.id = Likes.sentence_id WHERE Likes.spanish_like = (SELECT MAX(Likes.spanish_like) FROM Likes)"
     )
