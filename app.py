@@ -321,5 +321,10 @@ def ResultsPage():
     results= likeSystem.Mostly_liked_sentences(1, cache)
     return render_template('results.html', result= results)
 
+@app.route("/qr")
+def QR_page():
+    return render_template('qr.html')
+
+
 if __name__== '__main__':
     app.run()
