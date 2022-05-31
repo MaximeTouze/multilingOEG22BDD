@@ -3,11 +3,9 @@
 import re
 
 from flask import Flask, render_template, request, jsonify
-import my_python.word_cloud_generation.word_cloud_generation as word_cloud_generation
 from urllib.request import urlretrieve
 import wave, struct
 import json
-import js2py
 import os as os
 
 from my_python.const.lang_const import *

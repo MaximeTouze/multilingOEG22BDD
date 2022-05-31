@@ -2,8 +2,8 @@ from flask import Flask, render_template, request, jsonify
 from urllib.request import urlretrieve
 import wave, struct
 import json
-import js2py
-import re
+#import js2py
+#import re
 import mariadb
 import requests
 import os as os
