@@ -15,15 +15,12 @@ def connection():
     except mariadb.Errodef getSentence_Like_Room(room):
     return sentence_like[room]
 """
+# connect to the DB : return the connection and the cursor
 def connection():
     try:
         connect = mariadb.connect(
             user = "root",
             password = "oegP@ss22LS2N",
-            #host= "172.26.70.167",
-            #host= "localhost",
-            #host= "127.0.0.1",
-            #port=3306,
             database= "oeglab"
         )
     except mariadb.Error as e:

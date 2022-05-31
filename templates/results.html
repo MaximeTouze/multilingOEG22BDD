@@ -1,3 +1,4 @@
+<!-- Results page :: shows the mostly liked sentences gave as parameters -->
 <html>
   <head>
     <meta charset="UTF-8">
@@ -5,7 +6,7 @@
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache, must-revalidate">
 
-    <title>View</title>
+    <title>Results</title>
     <link rel="icon" type="image/x-icon" href="../static/exposed/favicon.png">
 
 
@@ -23,15 +24,17 @@
 
   <body>
     <div id="displayPanel" class="basic_color_cell view-display">
+      <!-- If sentences -->
       {% if result != None %}
+      <!-- for each sentence to show -->
       {% for lang, res in result['liked_sentences'].items() %}
+      <!-- show the sentence -->
       <div class='sentence'><p>{{res['sentence']}}</p> <p class='nb_like'>{{res['nb_likes']}}</p><p class='heart.liked'></p> </div>
       {% endfor %}
       {% else %}
+      <!-- If no sentence show :: -->
       No conference running
       {% endif %}
     </div>
   </body>
-
-  <script type="text/javascript">//onload();</script>
 </html>

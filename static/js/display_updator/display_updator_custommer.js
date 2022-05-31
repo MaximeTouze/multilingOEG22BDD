@@ -70,6 +70,7 @@ function updateTitle(){
 async function display_update () {
   //Ongoing on healthfull basis
   updateTitle();
+  // if no update ungoing or if the new display is diffrent than the previous
   if (!updateUngoing || previous_display != selected_display) {
     updateUngoing = true;
 

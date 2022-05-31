@@ -7,7 +7,7 @@ async function Updator() {
 }
 
 
-
+// loads the sentences
 async function loadSentences () {
   /*const elt = document.getElementById('displayPanel');
 
@@ -26,9 +26,9 @@ async function loadSentences () {
   updateSentence (true);
 }
 
+// Update the word cloud
 function wordCloud_update() {
   compteur++;
   imgName = selected_display + '.' + selected_language + '.' + IMG_TYPE;
-  //document.getElementById('displayPanel').innerHTML = GenerateExposedImg(imgName + "?" + compteur);
   document.getElementById('displayPanel').style.backgroundImage = "url(../static/exposed/"+imgName + "?" + compteur+")"
 }

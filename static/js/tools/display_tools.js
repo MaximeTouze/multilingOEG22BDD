@@ -1,3 +1,5 @@
+// Tools for the display
+
 // Returns the htmml id of the sentence, need the sentence's number as parameter
 function getImageId (nb) {
   return "sentence-thumb-" + nb;

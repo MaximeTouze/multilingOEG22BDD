@@ -1,6 +1,8 @@
+// form tools
 room_mem = null;
 lang_mem = null;
 
+// Returns the val from a form using its name if it exists, else return null
 function getValFromFormName(name) {
   var e = document.getElementsByName(name)[0];
   if (e) {
@@ -10,6 +12,7 @@ function getValFromFormName(name) {
   }
 }
 
+// get the value from the room for if it exists (or if the value has existed), else return null
 function getValFromRoomForm () {
   res = getValFromFormName("room");
   if (!res) {
@@ -20,6 +23,7 @@ function getValFromRoomForm () {
   return res;
 }
 
+// get the value from the lang form if it exists (or if the value has existed), else return null
 function getValFromLangForm () {
   res =  getValFromFormName("lang");
   if (!res) {

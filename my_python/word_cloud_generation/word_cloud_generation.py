@@ -180,6 +180,7 @@ def confrence(speech_part_1, speech_part_2, speech_part_3):
     #print(word_freq.most_common(20))
 
 ###### Callables ::
+# generate the word cloud from the text, the language is used for the WC name
 def getCloudFromTextAndLanguage(text, lang, room=-1):
     fields = get_freqDist(text)
     path = "static/exposed/word_cloud.room" + room + "." + lang + ".png"

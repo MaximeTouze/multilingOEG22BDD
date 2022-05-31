@@ -7,7 +7,7 @@
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache, must-revalidate">
 
-    <title>View</title>
+    <title>Multiling OEG 22</title>
     <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='exposed/favicon.png') }}">
 
 
@@ -21,6 +21,7 @@
   <body>
     <div class="grid-container">
       <div id="grid-column-languages-selection">
+        <!-- - - - - - Language buttons - - - - - - -->
         <div id="eng-button" class="cell selected_color_cell"
           onclick="LanguagesButtonsFunction(ENGLISH)">
           english
@@ -44,6 +45,7 @@
         <div class="basic_color_cell" id="logo"></div>
       </div>
       <div id="grid-column-display">
+        <!-- - - - - - Title part - - - - - - -->
         <div class="grid-container-title-cloud">
           {% if title != None %}
           <div id="title-conf">
@@ -53,13 +55,14 @@
           {% if title == None %}
           <div id="noTitle-conf"></div>
           {% endif %}
-  
+
           <div id="displayPanel" class="basic_color_cell view-display">
           </div>
         </div>
-       
+
 
         <div id="grid-column-display-selection">
+          <!-- - - - - - Display buttons - - - - - - -->
           <div id="word_cloud-button" class="selected_color_cell"
             onclick="DisplaysButtonsFunction(WORD_CLOUD)">
             word cloud

@@ -73,7 +73,7 @@ def getDisplayed_sentences_room_language(room, language):
 def getDisplayed_sentences_room_language_from(room, language, from_sent):
     sent_rank = sentences_rank[room]
     displayed_sentences_scaled = displayed_sentences[room][language]
-    
+
     # In case of new conf
     if (sent_rank < from_sent) :
         # New conf = reset on view too
@@ -89,10 +89,11 @@ def getDisplayed_sentences_room_language_from(room, language, from_sent):
         # Return the missing sentences
         return (displayed_sentences_scaled [from_sent - sent_rank:], sent_rank)
 
-
+# getting the sound memory
 def getSound_memory():
     return audio_memory
 
+# getting the soud memory for the room gave as parameter
 def getSound_memory_room(room):
     return getSound_memory()[room]
 
@@ -112,22 +113,23 @@ def addDisplayed_sentences_room_language(room, language, sentences):
         displayed_sentences[room][language] = displayed_sentences[room][language][-sentences_limit:]
     return
 
-
+# add an adio part into memory
 def addSoundMemory(room, audioBuffer):
     # Prepare the buffer
     audioBuffer = re.sub(r'"\d*":', '', audioBuffer)
-    #print(audioBuffer)
     buffer = audioBuffer.split(',')[2:-2]
-    #buffer = Clear(buffer)
+
     # keep in memory the new datas
     for sample in buffer :
         audio_memory[room].append(sample)
     return
 
+# Remove the excess of the audio
 def removeExcess(room):
     if (len(audio_memory) > audio_limit):
         audio_memory[room] = getSound_memory_room(room)[(len(audio_memory)-audio_limit):]
     return
 
+# Getting the sound memory for a room
 def getSound_memory_room(room):
     return audio_memory[room]

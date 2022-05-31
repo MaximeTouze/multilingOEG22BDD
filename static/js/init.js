@@ -1,9 +1,10 @@
+// The JS consts
 
+// languages
 const ENGLISH = "eng";
 const FRENCH = "fr";
 const SPANISH = "esp";
 const ARABIAN = "ara";
-// https://cloud.google.com/speech-to-text/docs/languages
 
 // Images extentions
 const IMG_TYPE = 'png';

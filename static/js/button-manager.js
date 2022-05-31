@@ -36,6 +36,7 @@ const DisplaysButtonsFunction = function (display) {
   }
 }
 
+/** function to call for liking a sentence with the sentence id as param */
 const LikeSentence = function (sentence_num) {
   ChangeSentenceLikeButtonToUnlike(sentence_num);
   $.ajax({
@@ -48,19 +49,9 @@ const LikeSentence = function (sentence_num) {
     },
     success:function(response) {}
  });
- /*
- $.ajax({
-   type:'POST',
-   url:'/likeSentence',
-   data:{
-     'nb_sentence':2,
-     'lang':"eng",
-     'room':1
-   },
-   success:function(response) {}
- });*/
 }
 
+/** function to call for unliking a sentence with the sentence id as param */
 const UnlikeSentence = function (sentence_num) {
   ChangeSentenceDislikeButtonToLike(sentence_num);
   $.ajax({
@@ -73,15 +64,4 @@ const UnlikeSentence = function (sentence_num) {
     },
     success:function(response) {}
  });
- /*
- $.ajax({
-   type:'POST',
-   url:'/UnlikeSentence',
-   data:{
-     'nb_sentence':2,
-     'lang':"fr",
-     'room':1
-   },
-   success:function(response) {}
- });*/
 }

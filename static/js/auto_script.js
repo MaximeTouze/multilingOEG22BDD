@@ -1,10 +1,9 @@
-tabs = ["eng-button", "fr-button", "esp-button", "ara-button"]
+tabs = ["eng-button", "fr-button", "esp-button", "ara-button"] // languages
 i=1
-setInterval(function(){ 
-    document.getElementById(tabs[i]).click()
-    console.log(document.getElementById(tabs[i]))
-    i++
-    if(i == 4){
-        i = 0
-    }
+// changes the active
+setInterval(function(){
+  // simulate a click on the html button for the new language
+    document.getElementById(tabs[i]).click();
+    // looping
+    i = (i +1) % 4;
 }, 10000);
