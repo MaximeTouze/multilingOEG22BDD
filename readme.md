@@ -28,7 +28,6 @@ Unix :
 ./run.sh
 Windows:
 ./run.ps1
-Fill the information asked for current talk and here you go
 
 ### Licences:
 This project is [CC BY](https://creativecommons.org/licenses/by/4.0/)  
